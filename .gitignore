@@ -1,0 +1,9 @@
+*.pot
+*.pyc
+*.swp
+local_settings.py
+config.ini
+ 
+# Editor backup files
+*~
+*#
