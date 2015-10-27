@@ -1,0 +1,67 @@
+[
+  {
+    "model": "showReport.AssetRating",
+    "pk": 1,
+    "fields": {
+      "ip": "10.1.15.249",
+      "rating": "5"
+    }
+  },
+  {
+    "model": "showReport.AssetRating",
+    "pk": 2,
+    "fields": {
+      "ip": "10.1.15.237",
+      "rating": "5"
+    }
+  },
+  {
+    "model": "showReport.AssetRating",
+    "pk": 3,
+    "fields": {
+      "ip": "10.1.14.19",
+      "rating": "5"
+    }
+  },
+  {
+    "model": "showReport.AssetRating",
+    "pk": 4,
+    "fields": {
+      "ip": "10.1.14.12",
+      "rating": "5"
+    }
+  },
+  {
+    "model": "showReport.AssetRating",
+    "pk": 5,
+    "fields": {
+      "ip": "10.1.12.96",
+      "rating": "5"
+    }
+  },
+  {
+    "model": "showReport.AssetRating",
+    "pk": 6,
+    "fields": {
+      "ip": "10.1.12.9",
+      "rating": "5"
+    }
+  },
+  {
+    "model": "showReport.AssetRating",
+    "pk": 7,
+    "fields": {
+      "ip": "10.1.12.202",
+      "rating": "5"
+    }
+  },
+  {
+    "model": "showReport.AssetRating",
+    "pk": 8,
+    "fields": {
+      "ip": "10.1.12.162",
+      "rating": "5"
+    }
+  }
+]
+

@@ -1,0 +1,29 @@
+<!-- <!doctype html>
+<html>
+  <head>
+
+    <title>App Organizer</title>
+  </head>
+
+  <body>
+ -->    <p>Assign importance to hosts: <br>(5: most important, 1: least important)</p>
+    <p>
+      {% for i in context %}
+      {{i.ip}} 
+      <select id="selectRating">
+        <option id={{i.ip}}1>1</option>
+        <option id= {{i.ip}}2 >2</option>
+        <option id={{i.ip}}3>3</option>
+        <option id={{i.ip}}4>4</option>
+        <option id= {{i.ip}}5>5</option>
+      </select>
+      <script>
+      var defaultSelection = document.getElementById("{{i.ip}}{{i.rating}}");
+      defaultSelection.selected=true;
+      </script>
+      <br>
+      {% endfor %}
+    </p>
+    <p>Ends here</p>
+<!--   </body>
+</html> -->

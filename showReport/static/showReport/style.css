@@ -1,0 +1,47 @@
+#divHomeMain {
+	/* Container div - it contains two divs, divHomeMenu and divHomeDesc.
+		This is to display both the child divs in a single row - side by side */
+	display: table-row;
+}
+#divHomeMenu {
+	/* To make apps divHomeMenu and divHomeDesc div appear side by side (and not one below the other) */
+	display: table-cell;
+
+	/* Rest of these properties are quite intuitive */
+	text-align: center;
+	padding: 25px;
+	border-radius: 25px;
+	border: 6px solid #ffffff;
+	background-color: #eeeeee;
+}
+#divHomeDesc {
+	/* To make divHomeMenu div and divHomeDesc div appear side by side (and not one below the other) */
+	display: table-cell;
+
+	/* Rest of these properties are quite intuitive */
+	text-align: center;
+	border-radius: 25px;
+/*	padding: 25px;
+	border: 6px solid #ffffff;
+*/	background-color: #eeeeee;
+	width: 100%;
+}
+/*iframe{
+    overflow:hidden;
+    border:none;
+
+}
+body {
+    margin: 0;
+    width: 100%; 
+    height: 100%;
+}
+*/
+body {
+    margin: 0;            /* Reset default margin */
+}
+iframe {
+    border: none;         /* Reset default border */
+    height: 100vh;        /* Viewport-relative units */
+    width: 100vw;
+}

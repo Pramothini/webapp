@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'showReport/style.css' %}" />
+<head>
+  <title>Software Patch Management</title>
+</head>
+
+<body>
+
+  <div id="divHomeMain">
+    <div id="divHomeMenu">
+      <div id="divHomeMenu1"><a href ="#" onclick="load_home()"> HOME</a></div>
+      <div id="divHomeMenu2"><a href ="#" onclick="load_assets()"> ASSETS </a></div>
+      <div id="divHomeMenu3"><a href ="#" onclick="load_report()"> REPORT </a></div>
+      <div id="divHomeMenu4"><a href ="#" onclick="load_csv()"> CSV </a></div>
+    </div>
+    <div id="divHomeDesc">
+   <p>Assign importance to hosts: <br>(5: most important, 1: least important)</p>
+    <p>
+      {% for i in context %}
+      {{i.ip}} 
+      <select id="selectRating">
+        <option id={{i.ip}}1>1</option>
+        <option id= {{i.ip}}2 >2</option>
+        <option id={{i.ip}}3>3</option>
+        <option id={{i.ip}}4>4</option>
+        <option id= {{i.ip}}5>5</option>
+      </select>
+      <script>
+      var defaultSelection = document.getElementById("{{i.ip}}{{i.rating}}");
+      defaultSelection.selected=true;
+      </script>
+      <br>
+      {% endfor %}
+    </p>
+    <p>Ends here</p>    </div>
+  </div>
+  <script>
+      function load_assets(){
+            document.getElementById("divHomeDesc").innerHTML='<object type="text/html" data="assets" ></object>';
+          }
+      function load_home(){
+            document.getElementById("divHomeDesc").innerHTML='<object  width="100%" height="121%" data="assets" ></object>';
+          }
+      function load_report(){
+            document.getElementById("divHomeDesc").innerHTML=' <object type="text/html">  <p>Assign importance to hosts: <br><br><br><br><br><br><br><br>(5: most important, 1: least important)</p></object>';
+          }
+      function load_csv(){
+            document.getElementById("divHomeDesc").innerHTML='<iframe src="assets" ></iframe>';
+          }
+  </script>
+</body>
+</html>
