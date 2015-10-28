@@ -1,0 +1,82 @@
+IP,Title,Severity,Threat
+172.29.93.185,NetBIOS Name Accessible,2,Unauthorized users can obtain this host's NetBIOS server name from a remote system.
+172.29.93.185,NetBIOS Bindings Information,3,"The following bindings were detected on this computer. Bindings have many purposes. They reflect such things as users logged-in, registration of a user name, registration of a service in a domain, and registering of a NetBIOS name."
+172.29.93.185,Host Uptime Based on TCP TimeStamp Option,2,"The TCP/IP stack on the host supports the TCP TimeStamp (kind 8) option. Typically the timestamp used is the host's uptime (since last reboot) in various units (e.g., one hundredth of second, one tenth of a second, etc.). Based on this, we can obtain the host's uptime. The result is given in the Result section below.
+ 
+Some operating systems (e.g., MacOS, OpenBSD) use a non-zero, probably random, initial value for the timestamp. For these operating systems, the uptime obtained does not reflect the actual uptime of the host; the former is always larger than the latter."
+172.29.93.185,DNS Host Name,1,"The fully qualified domain name of this host, if it was obtained from a DNS server, is displayed in the RESULT section."
+172.29.93.185,Network Adapter MAC Address,1,It is possible to obtain the MAC address information of the network adapters on the target system. Various sources such as SNMP and NetBIOS provide such information. This vulnerability test attempts to gather and report on this information in a table format.
+172.29.93.185,Host Scan Time,1,"The Host Scan Time is the period of time it takes the scanning engine to perform the vulnerability assessment of a single target host. The Host Scan Time for this host is reported in the Result section below. 
+ 
+The Host Scan Time does not have a direct correlation to the Duration time as displayed in the Report Summary section of a scan results report. The Duration is the period of time it takes the service to perform a scan task. The Duration includes the time it takes the service to scan all hosts, which may involve parallel scanning. It also includes the time it takes for a scanner appliance to pick up the scan task and transfer the results back to the service's Secure Operating Center. Further, when a scan task is distributed across multiple scanners, the Duration includes the time it takes to perform parallel host scanning on all scanners."
+172.29.93.185,Host Names Found,1,"The following host names were discovered for this computer using various methods such as DNS look up, NetBIOS query, and SQL server name query."
+172.29.93.185,Open UDP Services List,1,"A port scanner was used to draw a map of all the UDP services on this host that can be accessed from the Internet.
+ 
+Note that if the host is behind a firewall, there is a small chance that the list includes a few ports that are filtered or blocked by the firewall but are not actually open on the target host. This (false positive on UDP open ports) may happen when the firewall is configured to reject UDP packets for most (but not all) ports with an ICMP Port Unreachable packet. This may also happen when the firewall is configured to allow UDP packets for most (but not all) ports through and filter/block/drop UDP packets for only a few ports. Both cases are uncommon."
+172.29.93.185,Open TCP Services List,1,"The port scanner enables unauthorized users with the appropriate tools to draw a map of all services on this host that can be accessed from the Internet.  The test was carried out with a ""stealth"" port scanner so that the server does not log real connections.
+ 
+The Results section displays the port number (Port), the default service listening on the port (IANA Assigned Ports/Services), the description of the service (Description) and the service that the scanner detected using service discovery (Service Detected)."
+172.29.93.185,ICMP Replies Received,1,"ICMP (Internet Control and Error Message Protocol) is a protocol encapsulated in IP packets. ICMP's principal purpose is to provide a protocol layer that informs gateways of the inter-connectivity and accessibility of other gateways or hosts. 
+ 
+We have sent the following types of packets to trigger the host to send us ICMP replies: 
+ 
+Echo Request (to trigger Echo Reply) 
+Timestamp Request (to trigger Timestamp Reply) 
+Address Mask Request (to trigger Address Mask Reply) 
+UDP Packet (to trigger Port Unreachable Reply) 
+IP Packet with Protocol >= 250 (to trigger Protocol Unreachable Reply)
+ 
+Listed in the ""Result"" section are the ICMP replies that we have received."
+172.29.93.185,NetBIOS Host Name,1,The NetBIOS host name of this computer has been detected.
+172.29.93.185,IP ID Values Randomness,1,"The values for the identification (ID) field in IP headers in IP packets from the host are analyzed to determine how random they are. The changes between subsequent ID values for either the network byte ordering or the host byte ordering, whichever is smaller, are displayed in the RESULT section along with the duration taken to send the probes. When incremental values are used, as is the case for TCP/IP implementation in many operating systems, these changes reflect the network load of the host at the time this test was conducted.
+ 
+Please note that for reliability reasons only the network traffic from open TCP ports is analyzed."
+172.29.93.185,CUPS service Detected,1,The host is running the CUPS printer service.
+172.29.92.223,NetBIOS Name Accessible,2,Unauthorized users can obtain this host's NetBIOS server name from a remote system.
+172.29.92.223,CUPS UDP Packet Remote Denial of Service Vulnerability,4,"CUPS is prone to an unspecified, remotely exploitable denial of service vulnerability. It is reported that this issue can be exploited by remote users to render a server unresponsive. 
+ 
+Successful exploitation requires that the attacker can access port 631, which is used by the Internet Printing Protocol (IPP). This would deny access to the CUPS service by legitimate users. Additional reports indicate it's possible to trigger this issue with a UDP packet and thereby disrupt browsing through CUPS."
+172.29.92.223,NetBIOS Bindings Information,3,"The following bindings were detected on this computer. Bindings have many purposes. They reflect such things as users logged-in, registration of a user name, registration of a service in a domain, and registering of a NetBIOS name."
+172.29.92.223,Operating System Detected,2,"Several different techniques can be used to identify the operating system (OS) running on a host. A short description of these techniques is provided below. The specific technique used to identify the OS on this host is included in the RESULTS section of your report.
+ 
+1)  TCP/IP Fingerprint : The operating system of a host can be identified from a remote system using TCP/IP fingerprinting. All underlying operating system TCP/IP stacks have subtle differences that can be seen in their responses to specially-crafted TCP packets. According to the results of this ""fingerprinting"" technique, the OS version is among those listed below. 
+ 
+Note that if one or more of these subtle differences are modified by a firewall or a packet filtering device between the scanner and the host, the fingerprinting technique may fail. Consequently, the version of the OS may not be detected correctly. If the host is behind a proxy-type firewall, the version of the operating system detected may be that for the firewall instead of for the host being scanned.
+ 
+2)  NetBIOS : Short for Network Basic Input Output System, an application programming interface (API) that augments the DOS BIOS by adding special functions for local-area networks (LANs). Almost all LANs for PCs are based on the NetBIOS. Some LAN manufacturers have even extended it, adding additional network capabilities. NetBIOS relies on a message format called Server Message Block (SMB). 
+ 
+3)  PHP Info : PHP is a hypertext pre-processor, an open-source, server-side, HTML-embedded scripting language used to create dynamic Web pages. Under some configurations it is possible to call PHP functions like phpinfo() and obtain operating system information.
+ 
+4)  SNMP : The Simple Network Monitoring Protocol is used to monitor hosts, routers, and the networks to which they attach. The SNMP service maintains Management Information Base (MIB), a set of variables (database) that can be fetched by Managers. These include ""MIB_II.system.sysDescr"" for the operating system."
+172.29.92.223,Host Uptime Based on TCP TimeStamp Option,2,"The TCP/IP stack on the host supports the TCP TimeStamp (kind 8) option. Typically the timestamp used is the host's uptime (since last reboot) in various units (e.g., one hundredth of second, one tenth of a second, etc.). Based on this, we can obtain the host's uptime. The result is given in the Result section below.
+ 
+Some operating systems (e.g., MacOS, OpenBSD) use a non-zero, probably random, initial value for the timestamp. For these operating systems, the uptime obtained does not reflect the actual uptime of the host; the former is always larger than the latter."
+172.29.92.223,DNS Host Name,1,"The fully qualified domain name of this host, if it was obtained from a DNS server, is displayed in the RESULT section."
+172.29.92.223,Network Adapter MAC Address,1,It is possible to obtain the MAC address information of the network adapters on the target system. Various sources such as SNMP and NetBIOS provide such information. This vulnerability test attempts to gather and report on this information in a table format.
+172.29.92.223,Host Scan Time,1,"The Host Scan Time is the period of time it takes the scanning engine to perform the vulnerability assessment of a single target host. The Host Scan Time for this host is reported in the Result section below. 
+ 
+The Host Scan Time does not have a direct correlation to the Duration time as displayed in the Report Summary section of a scan results report. The Duration is the period of time it takes the service to perform a scan task. The Duration includes the time it takes the service to scan all hosts, which may involve parallel scanning. It also includes the time it takes for a scanner appliance to pick up the scan task and transfer the results back to the service's Secure Operating Center. Further, when a scan task is distributed across multiple scanners, the Duration includes the time it takes to perform parallel host scanning on all scanners."
+172.29.92.223,Host Names Found,1,"The following host names were discovered for this computer using various methods such as DNS look up, NetBIOS query, and SQL server name query."
+172.29.92.223,Open UDP Services List,1,"A port scanner was used to draw a map of all the UDP services on this host that can be accessed from the Internet.
+ 
+Note that if the host is behind a firewall, there is a small chance that the list includes a few ports that are filtered or blocked by the firewall but are not actually open on the target host. This (false positive on UDP open ports) may happen when the firewall is configured to reject UDP packets for most (but not all) ports with an ICMP Port Unreachable packet. This may also happen when the firewall is configured to allow UDP packets for most (but not all) ports through and filter/block/drop UDP packets for only a few ports. Both cases are uncommon."
+172.29.92.223,Open TCP Services List,1,"The port scanner enables unauthorized users with the appropriate tools to draw a map of all services on this host that can be accessed from the Internet.  The test was carried out with a ""stealth"" port scanner so that the server does not log real connections.
+ 
+The Results section displays the port number (Port), the default service listening on the port (IANA Assigned Ports/Services), the description of the service (Description) and the service that the scanner detected using service discovery (Service Detected)."
+172.29.92.223,ICMP Replies Received,1,"ICMP (Internet Control and Error Message Protocol) is a protocol encapsulated in IP packets. ICMP's principal purpose is to provide a protocol layer that informs gateways of the inter-connectivity and accessibility of other gateways or hosts. 
+ 
+We have sent the following types of packets to trigger the host to send us ICMP replies: 
+ 
+Echo Request (to trigger Echo Reply) 
+Timestamp Request (to trigger Timestamp Reply) 
+Address Mask Request (to trigger Address Mask Reply) 
+UDP Packet (to trigger Port Unreachable Reply) 
+IP Packet with Protocol >= 250 (to trigger Protocol Unreachable Reply)
+ 
+Listed in the ""Result"" section are the ICMP replies that we have received."
+172.29.92.223,NetBIOS Host Name,1,The NetBIOS host name of this computer has been detected.
+172.29.92.223,Degree of Randomness of TCP Initial Sequence Numbers,1,TCP Initial Sequence Numbers (ISNs) obtained in the SYNACK replies from the host are analyzed to determine how random they are. The average change between subsequent ISNs and the standard deviation from the average are displayed in the RESULT section. Also included is the degree of difficulty for exploitation of the TCP ISN generation scheme used by the host.
+172.29.92.223,IP ID Values Randomness,1,"The values for the identification (ID) field in IP headers in IP packets from the host are analyzed to determine how random they are. The changes between subsequent ID values for either the network byte ordering or the host byte ordering, whichever is smaller, are displayed in the RESULT section along with the duration taken to send the probes. When incremental values are used, as is the case for TCP/IP implementation in many operating systems, these changes reflect the network load of the host at the time this test was conducted.
+ 
+Please note that for reliability reasons only the network traffic from open TCP ports is analyzed."
+172.29.92.223,CUPS service Detected,1,The host is running the CUPS printer service.
