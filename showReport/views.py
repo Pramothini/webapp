@@ -1,8 +1,25 @@
 from django.shortcuts import render
-from .models import AssetRating
+from showReport.models import *
+from rest_framework import viewsets
+from showReport.serializers import *
 import csv
 import os
 # Create your views here.
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+
+class ReportViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows reports to be viewed or edited.
+    """
+    queryset = ReportTable.objects.all()
+    serializer_class = ReportSerializer
+
 def mainMenu(request):
     context=AssetRating.objects.all()
     return render(request, 'mainMenu.html', {"context":context.values()})

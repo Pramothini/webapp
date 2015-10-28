@@ -15,16 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from rest_framework import routers
+from showReport import views
 
-# urlpatterns = [
-#     url(r'^admin/', include(admin.site.urls)),
-#     url(r'^asssets/', 'showReport.views.getAssets', name='getAssets'),
-
-# ]
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+router.register(r'report', views.ReportViewSet)
+urlpatterns = router.urls
 
 urlpatterns = patterns('',
 	url(r'^$', 'showReport.views.mainMenu', name='mainMenu'),
 	url(r'^assets$', 'showReport.views.getAssets', name='getAssets'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^home/', 'showReport.views.home', name='home'),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^', include(router.urls))
 )
