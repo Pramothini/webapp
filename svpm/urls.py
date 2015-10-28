@@ -26,4 +26,5 @@ urlpatterns = patterns('',
 	url(r'^$', 'showReport.views.mainMenu', name='mainMenu'),
 	url(r'^assets$', 'showReport.views.getAssets', name='getAssets'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^home/', 'showReport.views.home', name='home'),
 )
