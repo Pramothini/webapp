@@ -27,7 +27,7 @@ $(document).ready(function() {
     console.log("inside doc ready");
 
     $.ajax({
-        url: "/report/",
+        url: "/reportAPI/",
         type: "GET",
         data : {},
         dataType : "json",

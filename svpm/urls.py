@@ -19,13 +19,14 @@ from rest_framework import routers
 from showReport import views
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'report', views.ReportViewSet)
+router.register(r'usersAPI', views.UserViewSet)
+router.register(r'reportAPI', views.ReportViewSet)
+router.register(r'assetAPI', views.AssetViewSet)
 urlpatterns = router.urls
 
 urlpatterns = patterns('',
 	url(r'^$', 'showReport.views.mainMenu', name='mainMenu'),
-	url(r'^assets$', 'showReport.views.getAssets', name='getAssets'),
+	url(r'^assets/', 'showReport.views.getAssets', name='getAssets'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^home/', 'showReport.views.home', name='home'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),

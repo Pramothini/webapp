@@ -20,6 +20,13 @@ class ReportViewSet(viewsets.ModelViewSet):
     queryset = ReportTable.objects.all()
     serializer_class = ReportSerializer
 
+class AssetViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows reports to be viewed or edited.
+    """
+    queryset = AssetRating.objects.all()
+    serializer_class = AssetSerializer
+
 def mainMenu(request):
     context=AssetRating.objects.all()
     return render(request, 'mainMenu.html', {"context":context.values()})
@@ -35,6 +42,6 @@ def home(request):
     #     reader = csv.DictReader(f)
     #     for row in reader:
     #         resultlist.append(row)
-    context=AssetRating.objects.all()
-    print context.values()
-    return render(request, 'home.html',{"context":context.values()})
+    # context=AssetRating.objects.all()
+    # print context.values()
+    return render(request, 'home.html')

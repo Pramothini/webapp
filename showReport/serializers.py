@@ -13,3 +13,8 @@ class ReportSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ReportTable
         fields = ('businessRisk', 'title' , 'cveId','threat','impact','solution','severity')
+
+class AssetSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = AssetRating
+        fields = ('ip', 'rating')
