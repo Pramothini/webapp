@@ -3,8 +3,8 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 class AssetRating(models.Model):
-    ip = models.GenericIPAddressField(blank=True, null=True)
-    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    ip = models.GenericIPAddressField(unique=True)
+    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)],default='5')
 		
 class ReportTable(models.Model):
     businessRisk = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(10)])
