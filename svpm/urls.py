@@ -25,10 +25,9 @@ router.register(r'assetAPI', views.AssetViewSet)
 urlpatterns = router.urls
 
 urlpatterns = patterns('',
-	url(r'^$', 'showReport.views.mainMenu', name='mainMenu'),
+	url(r'^$', 'showReport.views.home', name='home'),
 	url(r'^assets/', 'showReport.views.getAssets', name='getAssets'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^home/', 'showReport.views.home', name='home'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^', include(router.urls))
 )
