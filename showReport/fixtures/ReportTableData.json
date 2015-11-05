@@ -3,28 +3,15 @@
     "model": "showReport.ReportTable",
     "pk": 1,
     "fields": {
-      "assetInfo":1,
-      "businessRisk" : "1",
-      "title":"NetBIOS Name Accessible",
-      "severity":"2",
-      "cveId":"123ADSE",
-      "solution":"zz",
-      "threat":"threat 1",
-      "impact":"Unauthorized users can obtain this host's NetBIOS server name from a remote system."
-    }
-  },
-  {
-    "model": "showReport.ReportTable",
-    "pk": 2,
-    "fields": {
-      "assetInfo":1,
-      "businessRisk" : "5",
-      "title":"NetBIOS Bindings Information",
-      "severity":"3",
-      "cveId":"2189CRSE",
-      "solution":"aa",
-      "threat":"threat 2",
-      "impact":"The following bindings were detected on this computer. Bindings have many purposes. They reflect such things as users logged-in, registration of a user name, registration of a service in a domain, and registering of a NetBIOS name."
+        "businessRisk": 1,
+        "title": "B",
+        "cveId": "C",
+        "threat": "D",
+        "impact": "E",
+        "solution": "F",
+        "severity": 5,
+        "assetInfo": 1
+        
     }
   }
 ]

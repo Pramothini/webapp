@@ -32,16 +32,17 @@ $(document).ready(function() {
         data : {},
         dataType : "json",
         success: function(reportitems) {
-            console.log(" inside success function",reportitems.results);
+            console.log(" inside success function");
             for (i in reportitems.results) {
                 console.log(" inside for each js", reportitems.results[i].impact);
-                $("#reporttable").append("<tr><td> "+reportitems.results[i].businessRisk +"</td> <td>" 
+                $("#reporttable").append("<tr><td> "+reportitems.results[i].assetInfo.ip +"</td> <td>" 
+                + (((2 * reportitems.results[i].severity) + (reportitems.results[i].assetInfo.rating))/2) +"</td><td>"
                 +reportitems.results[i].title +"</td><td>"
                 +reportitems.results[i].cveId+"</td> <td>"
                 +reportitems.results[i].threat+"</td> <td>"
                 +reportitems.results[i].impact+"</td> <td>"
-                +reportitems.results[i].severity+"</td> <td>"
-                +reportitems.results[i].solution+"</td></tr>");
+                +reportitems.results[i].solution+"</td> <td>"
+                +reportitems.results[i].severity+"</td></tr>");
             }
 
         },

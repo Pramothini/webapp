@@ -8,13 +8,15 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = User
         fields = ('url', 'username', 'email', 'groups')
 
-
-class ReportSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = ReportTable
-        fields = ('businessRisk', 'title' , 'cveId','threat','impact','solution','severity')
-
-class AssetSerializer(serializers.HyperlinkedModelSerializer):
+class AssetSerializer(serializers.ModelSerializer):
     class Meta:
         model = AssetRating
         fields = ('ip', 'rating')
+
+
+class ReportSerializer(serializers.ModelSerializer):
+    assetInfo = AssetSerializer()
+    class Meta:
+        model = ReportTable
+        fields = ('businessRisk', 'title' , 'cveId','threat','impact','solution','severity','assetInfo')
+
