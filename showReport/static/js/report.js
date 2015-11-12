@@ -36,7 +36,7 @@ $(document).ready(function() {
             for (i in reportitems.results) {
                 console.log(" inside for each js", reportitems.results[i].impact);
                 $("#reporttable").append("<tr><td> "+reportitems.results[i].assetInfo.ip +"</td> <td>" 
-                + (((2 * reportitems.results[i].severity) + (reportitems.results[i].assetInfo.rating))/2) +"</td><td>"
+                + (((reportitems.results[i].severity) + (2* reportitems.results[i].assetInfo.rating))/2) +"</td><td>"
                 +reportitems.results[i].title +"</td><td>"
                 +reportitems.results[i].cveId+"</td> <td>"
                 +reportitems.results[i].threat+"</td> <td>"
