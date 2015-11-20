@@ -2,7 +2,6 @@ $(document).ready(function() {
   $.get("reportAPI", function(data, status) {
     var byRisk = data.slice(0);
     byRisk.sort(function(a, b) {
-      alert(b.assetInfo.rating);
       return (((b.assetInfo.rating * 2 + b.severity) / 2) - ((a.assetInfo.rating * 2 + a.severity) / 2));
     });
 
