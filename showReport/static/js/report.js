@@ -14,6 +14,7 @@ function getCookie(name) {
     return cookieValue;
 }
 
+
 $(document).ready(function() {
 
     $.ajaxSetup({
@@ -50,5 +51,11 @@ $(document).ready(function() {
             console.log("error while getting report function",error);
         }
       });
+
+$('#convert-table').click( function() {
+  var table = $('#reporttable').tableToJSON();
+  console.log(table);
+  alert(JSON.stringify(table));  
+});
 });
 
