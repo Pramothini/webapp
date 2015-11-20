@@ -1,0 +1,48 @@
+table, th, td {
+   border: 1px solid black;
+}
+
+table {
+    width:100%;
+}
+th {
+    background-color: #000000;
+    color: #ffffff;
+}
+tr:nth-child(even) {
+    background: #aaa;
+}
+select {
+    width:100%;
+}
+p {
+display: inline;
+}
+#cancel{
+    color: #000000;
+    background-color: #cccccc
+}
+#submit {
+    color: #000000;
+    background-color: #cccccc
+}
+#cancel:hover {
+	background-color: #000000;
+	color: #ffffff;
+}
+#submit:hover {
+	background-color: #000000;
+	color: #ffffff;
+}
+/*#star {
+    color: #ffcc00;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+
+#star:hover:before,
+#star:hover ~ #star:before {
+   content: "\2605";
+   position: absolute;
+}
+*/
