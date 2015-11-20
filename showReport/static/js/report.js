@@ -52,10 +52,50 @@ $(document).ready(function() {
         }
       });
 
-$('#convert-table').click( function() {
-  var table = $('#reporttable').tableToJSON();
-  console.log(table);
-  alert(JSON.stringify(table));  
-});
+// This must be a hyperlink
+    $("#export").on('click', function (event) {
+        // CSV
+        exportTableToCSV.apply(this, [$('#reporttable'), 'export.csv']);
+        
+        // IF CSV, don't do event.preventDefault() or return false
+        // We actually need this to be a typical hyperlink
+    });
+
+
+function exportTableToCSV($table, filename) {
+
+        $rows = $table.find('tr');
+
+        var csvData = "";
+
+        for(var i=0;i<$rows.length;i++){
+                var $cells = $($rows[i]).children('th,td'); //header or content cells
+
+                for(var y=0;y<$cells.length;y++){
+                    if(y>0){
+                      csvData += ",";
+                    }
+                    var txt = ($($cells[y]).text()).toString().trim();
+                    if(txt.indexOf(',')>=0 || txt.indexOf('\"')>=0 || txt.indexOf('\n')>=0){
+                        txt = "\"" + txt.replace(/\"/g, "\"\"") + "\"";
+                    }
+                    csvData += txt;
+                }
+                csvData += '\n';
+        }
+
+            // Data URI
+            csvD = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csvData);
+
+        $(this)
+            .attr({
+            'download': filename,
+                'href': csvD,
+                'target': '_blank'
+        });
+    }
+
+
+
 });
 
