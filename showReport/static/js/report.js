@@ -27,6 +27,19 @@ $(document).ready(function() {
     });
     console.log("inside doc ready");
 
+    getReportData();
+
+    $("#exportAsCsv").on('click', function (event) {
+        exportTableToCSV.apply(this, [$('#reporttable'), 'export.csv']);
+    });
+
+    $("#exportAsJson").on('click', function (event) {
+        exportTableToJson.apply(this, [$('#reporttable'), 'export_as_json.json']);
+    });
+
+});
+
+function getReportData(){
     $.ajax({
         url: "/reportAPI/",
         type: "GET",
@@ -50,17 +63,7 @@ $(document).ready(function() {
             console.log("error while getting report function",error);
         }
       });
-
-
-    $("#exportAsCsv").on('click', function (event) {
-        exportTableToCSV.apply(this, [$('#reporttable'), 'export.csv']);
-    });
-
-    $("#exportAsJson").on('click', function (event) {
-        exportTableToJson.apply(this, [$('#reporttable'), 'export_as_json.json']);
-    });
-
-});
+}
 
 
 function exportTableToCSV($table, filename) {
