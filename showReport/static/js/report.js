@@ -35,7 +35,6 @@ $(document).ready(function() {
         success: function(reportitems) {
             console.log(" inside success function");
             for (i in reportitems.results) {
-                console.log(" inside for each js", reportitems.results[i].impact);
                 $("#reporttable").append("<tr><td> "+reportitems.results[i].assetInfo.ip +"</td> <td>" 
                 + (((reportitems.results[i].severity) + (2* reportitems.results[i].assetInfo.rating))/2) +"</td><td>"
                 +reportitems.results[i].title +"</td><td>"
@@ -52,20 +51,20 @@ $(document).ready(function() {
         }
       });
 
-// This must be a hyperlink
-    $("#export").on('click', function (event) {
-        // CSV
+
+    $("#exportAsCsv").on('click', function (event) {
         exportTableToCSV.apply(this, [$('#reporttable'), 'export.csv']);
-        
-        // IF CSV, don't do event.preventDefault() or return false
-        // We actually need this to be a typical hyperlink
     });
+
+    $("#exportAsJson").on('click', function (event) {
+        exportTableToJson.apply(this, [$('#reporttable'), 'export_as_json.json']);
+    });
+
+});
 
 
 function exportTableToCSV($table, filename) {
-
         $rows = $table.find('tr');
-
         var csvData = "";
 
         for(var i=0;i<$rows.length;i++){
@@ -97,5 +96,35 @@ function exportTableToCSV($table, filename) {
 
 
 
-});
+ function exportTableToJson($table, filename){
+        var myRows = [];
+        var headersText = [];
+        var $headers = $("th");
+
+        // Loop through grabbing everything
+        var $rows = $("tbody tr").each(function(index) {
+            $cells = $(this).find("td");
+            myRows[index] = {};
+
+            $cells.each(function(cellIndex) {
+        // Set the header text
+                if(headersText[cellIndex] === undefined) {
+                    headersText[cellIndex] = $($headers[cellIndex]).text();
+                }
+        // Update the row object with the header/cell combo
+                 myRows[index][headersText[cellIndex]] = $(this).text();
+            });    
+        });
+
+        //alert(JSON.stringify(myRows));
+        // Data URI
+        csvD = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(myRows));
+
+         $(this)
+            .attr({
+            'download': filename,
+                'href': csvD,
+                'target': '_blank'
+        });
+ }
 
