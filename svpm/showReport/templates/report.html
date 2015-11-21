@@ -1,0 +1,31 @@
+{% extends "menu.html" %}
+{% load staticfiles %}
+{% block includeReport %}
+<link rel="stylesheet" type="text/css" href="{% static 'showReport/styleReport.css' %}" />
+<script src="{% static 'showReport/js/report.js' %}" type="text/javascript"></script>
+{% endblock %}
+{% block reportDiv %}
+<div>
+   <table id="reporttable">
+      <thead>
+         <tr>
+            <th>IP</th>
+            <th>Business Risk</th>
+            <th>Title</th>
+            <th>CVE Id</th>
+            <th>Threat</th>
+            <th>Impact</th>
+            <th>Solution</th>
+            <th>Severity</th>
+         </tr>
+      </thead>
+      <tbody></tbody>
+   </table>
+</div>
+<div>
+<a href="#" id="exportAsCsv">click to export Report as a CSV<i ></i></a>
+<br/>
+<a href="#" id="exportAsJson">click to export Report as a JSON<i ></i>
+</a>
+</div>
+{% endblock %}
