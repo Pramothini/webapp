@@ -71,6 +71,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'svpm.wsgi.application'
+# Used by the authentication system.
+# URL to use if the authentication system requires a user to log in.
+LOGIN_URL = '/login'
+
+# Default URL to redirect to after a user logs in.
+LOGIN_REDIRECT_URL = '/home'
 
 
 # Database
@@ -80,7 +86,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'svpm',
-        'USER': 'root',
+        'USER': 'pramothinidk',
         'PASSWORD': 'toor',
         'HOST': 'localhost',
         'PORT': '',

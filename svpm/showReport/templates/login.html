@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<title>Software Patch Management</title>
+{% load staticfiles %}
+<link href="{% static 'showReport/styleLogin.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div>
+    <h1>Software Patch management</h1>
+</div>
+
+<div class="modal-body row">
+   <div class="col-md-6">
+    {% if form.errors %}
+        <p style="color:red">
+            Incorrect user name and password.
+        </p>
+    {% endif %}
+
+    <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+        <table>
+        <tr>
+            <td>{{ form.username.label_tag }}</td>
+            <td>{{ form.username }}</td>
+        </tr>
+
+        <tr>
+            <td>{{ form.password.label_tag }}</td>
+            <td>{{ form.password }}</td>
+        </tr>
+        </table>
+
+        <input type="submit" value="Login" class="btn btn-primary" /> 
+        <input type="hidden" name="redirect_field_name" value="/home" />
+         <br/> <br/>
+         {% csrf_token %}
+
+    </form>
+
+    
+  </div>
+</div>
+
+</body>
+</html>
