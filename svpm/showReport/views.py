@@ -1,7 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from showReport.models import *
 from rest_framework import viewsets
 from showReport.serializers import *
+
+from django.http import HttpResponseRedirect
+from django.template import RequestContext
+from django.core.urlresolvers import reverse
+from showReport.forms import UploadFileForm
+import csv_validator
+
 
 # Create your views here.
 def menu(request):
@@ -13,8 +20,34 @@ def report(request):
 def assets(request):
     asset_data=AssetRating.objects.all()
     return render(request, 'assets.html', {"asset_data":asset_data.values()})
+
 def csvInput(request):
-    return render(request, 'csvInput.html')
+    validationMessage = ""
+    # Handle file upload
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Validate the uploaded file
+            validateResult, validationMessage = csv_validator.validateCSV(request.FILES['csvFile'])
+            if not validateResult:
+                # Save the uploaded file
+                newCSV = CSVDocument(csvfile = request.FILES['csvFile'])
+                newCSV.save()
+                print newCSV.csvfile.name
+                # Redirect to the document list after POST
+                return HttpResponseRedirect(reverse('csvInput'))
+    else:
+        form = UploadFileForm() # An empty form
+
+    # Load documents for the list page
+    allCSVFiles = CSVDocument.objects.all()
+
+    # Render list page with the documents and the form
+    return render_to_response(
+        'csvInput.html',
+        {'allCSVFiles': allCSVFiles, 'form': form, 'validationMessage': validationMessage},
+        context_instance=RequestContext(request)
+    )  
 
 """
 API endpoints

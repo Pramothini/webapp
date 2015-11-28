@@ -17,6 +17,8 @@ from django.conf.urls import include, url, patterns
 from django.contrib import admin
 from showReport import views
 from rest_framework import routers
+from django.conf.urls.static import static
+from django.conf import settings
 
 router = routers.DefaultRouter()
 router.register(r'reportAPI', views.ReportViewSet)
@@ -32,4 +34,4 @@ urlpatterns = patterns('',
     url(r'^csvinput$', 'showReport.views.csvInput', name='csvInput'),
     url(r'^', include(router.urls))
 
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

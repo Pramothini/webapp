@@ -80,7 +80,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'svpm',
-        'USER': 'root',
+        'USER': 'viveo',
         'PASSWORD': 'toor',
         'HOST': 'localhost',
         'PORT': '',
@@ -101,6 +101,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'saved_csv_files')
+MEDIA_URL = '/saved_csv_files/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/

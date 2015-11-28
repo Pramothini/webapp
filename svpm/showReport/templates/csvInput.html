@@ -1,4 +1,31 @@
 {% extends "menu.html" %}
 {% block csvDiv %}
-Hi csv
+
+<div>
+	<!-- Upload form -->
+	<form action="{% url 'csvInput' %}" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+		<p>{{ form.non_field_errors }}</p>
+		<p>{{ form.csvFile.label_tag }} {{ form.csvFile.help_text }}</p>
+		<p>
+			{{ form.csvFile.errors }}
+			{{ form.csvFile }}
+			<p>{{ validationMessage|linebreaksbr }} </p>
+		</p>
+		<p><input type="submit" value="Upload" /></p>
+	</form>
+	
+	<!-- List of uploaded csv files -->
+	{% if allCSVFiles %}
+		<ul>
+		{% for curCSVFile in allCSVFiles %}
+			<li><a href="{{ curCSVFile.csvfile.url }}">{{ curCSVFile.csvfile.name }}</a></li>
+		{% endfor %}
+		</ul>
+	{% else %}
+		<p>No CSV documents.</p>
+	{% endif %}
+
+</div>
+
 {% endblock %}
