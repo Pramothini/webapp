@@ -79,6 +79,7 @@ function updateAssetRating(assetData){
             console.log(" successfully updated an asset info");
           },
           error: function(error){
+            alert(error.responseText.substring(11,error.responseText.length - 2));
             console.log("error while updating assets",error);
           }
         });
