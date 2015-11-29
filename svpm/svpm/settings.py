@@ -78,12 +78,6 @@ LOGIN_URL = '/login'
 # Default URL to redirect to after a user logs in.
 LOGIN_REDIRECT_URL = '/home'
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    )
-}
-
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 

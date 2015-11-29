@@ -2,6 +2,7 @@ from django.shortcuts import render
 from showReport.models import *
 from rest_framework import viewsets
 from showReport.serializers import *
+from showReport.permissions import IsAdminOrReadOnly
 
 # Create your views here.
 def menu(request):
@@ -22,8 +23,10 @@ API endpoints
 class ReportViewSet(viewsets.ModelViewSet):
     queryset = ReportTable.objects.all()
     serializer_class = ReportSerializer
+    permission_classes = (IsAdminOrReadOnly,)
 
 class AssetViewSet(viewsets.ModelViewSet):
     queryset = AssetRating.objects.all()
     serializer_class = AssetSerializer
+    permission_classes = (IsAdminOrReadOnly,)
 
