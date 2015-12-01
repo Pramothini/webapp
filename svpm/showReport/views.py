@@ -59,6 +59,9 @@ class ReportViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAdminOrReadOnly,)
 
 class AssetViewSet(viewsets.ModelViewSet):
+    lookup_field = 'ip'
+    lookup_value_regex = '[0-9.]+'
+
     queryset = AssetRating.objects.all()
     serializer_class = AssetSerializer
     permission_classes = (IsAdminOrReadOnly,)

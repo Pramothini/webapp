@@ -72,7 +72,7 @@ function updateAssetRating(assetData){
       var myRating = $('#'+myId+' option:selected').text();
       if(value.rating != myRating){
         $.ajax({
-          url: "/assetAPI/"+value.id+"/",
+          url: "/assetAPI/"+value.ip+"/",
           type: "PUT",
           data : {"ip": value.ip,"rating": myRating},
           dataType : "json",
