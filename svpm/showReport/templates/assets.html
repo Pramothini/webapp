@@ -8,8 +8,19 @@
 {% endblock %}
 
 {% block assetDiv %}
+<div>
+   <h1 class="page-header">Asset Importance Rating</page-header>
+      <small></small>
+   </h1>
+</div>
 
 <div>
+
+</div>
+
+<div class="centerColumn">
+   <button class="button" onclick="location.href = 'assets'">CANCEL</button>
+   <button class="button" onclick='updateAssetRating( "{{asset_data}}" )'>SUBMIT</button>
    <table id="assettable">
       <thead>
          <tr>
@@ -21,13 +32,6 @@
       </tbody>
    </table>
 </div>
-<div>
-   <div>
-      <button id="submit" onclick='updateAssetRating( "{{asset_data}}" )'>SUBMIT</button>
-   </div>
-   <div>
-      <button id="cancel" onclick="location.href = 'assets'">CANCEL</button>
-   </div>
-</div>
+
 {% endblock %}
 
