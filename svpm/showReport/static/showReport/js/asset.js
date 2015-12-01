@@ -29,7 +29,7 @@ function fetchAssetData(){
 
     $.each(byRating, function(index, element) {
       var myId = element.ip.replace(/\./g, '_');
-      $('#assettable > tbody:last-child').append("<tr>"
+      $('#dataTables-example > tbody:last-child').append("<tr>"
       + "<td>"+ element.ip + "</td>"
 
       + "<td> <select id='"+myId+"' name = 'rating'>"

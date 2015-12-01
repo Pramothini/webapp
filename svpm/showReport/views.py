@@ -14,8 +14,12 @@ import csv_validator
 # Create your views here.
 def index(request):
     return render(request, 'bootstrap-responsive-admin-template/code/index.html')
+def charts(request):
+    return render(request, 'bootstrap-responsive-admin-template/code/charts.html')
 def table(request):
     return render(request, 'horizontal-admin/table.html')
+def inventory(request):
+    return render(request, 'horizontal-admin/inventory.html')
 def menu(request):
     return render(request, 'menu.html')
 def home(request):
