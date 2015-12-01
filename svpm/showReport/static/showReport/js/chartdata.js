@@ -18,15 +18,15 @@ function getData(){
     var pieData = [
         {
             value: high,
-            color: "#FF0000"
+            color: "#FF7777"
         },
         {
             value: medium,
-            color: "#FFFF00"
+            color: "#FFFF77"
         },
         {
             value: low,
-            color: "#0000FF"
+            color: "#7777FF"
         }
 
       ];
