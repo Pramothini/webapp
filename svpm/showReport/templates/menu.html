@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 {% load staticfiles %}
@@ -20,24 +20,14 @@
     <div id="heading"> <div>Software Patch Management</div>
     <a href = "logout" >logout</a></div>
     <div id="content">
-      <div id="menu">
-        <div id="choice">
-        <button onclick="location.href = 'home'">Home</button>
-        </div>
-        
-        <div id="choice">
-        <button onclick="location.href = 'report'"> Report </button>
-        </div>
-        
-        <div id="choice">
-        <button onclick="location.href = 'assets'"> Assets </button>
-        </div>
-        
-        <div id="choice">
-        <button onclick="location.href = 'csvinput'"> CSV </button>
-        </div>
+      <div class="nav">
+        <ul>
+            <li><a class="active" href="home">Home</a></li>
+            <li><a href="report">Report</a></li>
+            <li><a href="assets">Assets</a></li>
+            <li><a href="csvinput">CSV</a></li>   
+        </ul>
       </div>
-
       <div id="page">
         {% block assetDiv %}{% endblock %}
         {% block reportDiv %}{% endblock %}

@@ -17,6 +17,8 @@ from django.conf.urls import include, url, patterns
 from django.contrib import admin
 from showReport import views
 from rest_framework import routers
+from django.conf.urls.static import static
+from django.conf import settings
 
 router = routers.DefaultRouter()
 router.register(r'reportAPI', views.ReportViewSet)
@@ -26,6 +28,8 @@ urlpatterns = router.urls
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'showReport.views.menu', name='menu'),
+    url(r'^index$', 'showReport.views.index', name='index'),
+    url(r'^table$', 'showReport.views.table', name='table'),
     url(r'^home$', 'showReport.views.home', name='home'),
     url(r'^report$', 'showReport.views.report', name='report'),
     url(r'^assets$', 'showReport.views.assets', name='assets'),
@@ -34,4 +38,4 @@ urlpatterns = patterns('',
     url(r'^logout$', 'django.contrib.auth.views.logout_then_login'),
     url(r'^', include(router.urls))
 
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

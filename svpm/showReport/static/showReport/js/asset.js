@@ -66,13 +66,13 @@ function updateAssetRating(assetData){
   
   assetData = assetData.replace(/u'id'/g, "'id'");
   assetData = assetData.replace(/'/g, "\"");
-  errorstr = "none";
+  var errorflag = false;
   $.each($.parseJSON(assetData), function (item, value) {
       var myId = value.ip.replace(/\./g, '_');
       var myRating = $('#'+myId+' option:selected').text();
       if(value.rating != myRating){
         $.ajax({
-          url: "/assetAPI/"+value.id+"/",
+          url: "/assetAPI/"+value.ip+"/",
           type: "PUT",
           data : {"ip": value.ip,"rating": myRating},
           dataType : "json",
@@ -80,16 +80,14 @@ function updateAssetRating(assetData){
             console.log(" successfully updated an asset info");
           },
           error: function(error){
-            errorstr = error.responseText.substring(11,error.responseText.length - 2);
-            // alert();
             console.log("error while updating assets",error);
+            if(!errorflag){
+              errorflag = true;
+              alert(error.responseText.substring(11,error.responseText.length - 2));
+            }
           }
         });
       }
 
   });
-
-  if(errorstr != "none"){
-    alert(errorstr);
-  }
 }

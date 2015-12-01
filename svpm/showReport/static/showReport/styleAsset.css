@@ -1,16 +1,29 @@
 table, th, td {
-   border: 1px solid black;
+   font-family: 'Oswald', sans-serif;
+}
+th, td {
+      border: 1px solid #ddd;
+      padding: 5px;
 }
 
 table {
-    width:100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: none;
 }
 th {
-    background-color: #000000;
+    font-size: 1.1em;
+    background-color: #404040;
     color: #ffffff;
+    height: 30px;
+
 }
 tr:nth-child(even) {
-    background: #aaa;
+    background: #f2f2f2;
+}
+tr:hover {
+    background-color: #20B2AA;
 }
 select {
     width:100%;
@@ -18,22 +31,8 @@ select {
 p {
 display: inline;
 }
-#cancel{
-    color: #000000;
-    background-color: #cccccc
-}
-#submit {
-    color: #000000;
-    background-color: #cccccc
-}
-#cancel:hover {
-	background-color: #000000;
-	color: #ffffff;
-}
-#submit:hover {
-	background-color: #000000;
-	color: #ffffff;
-}
+
+
 /*#star {
     color: #ffcc00;
     unicode-bidi: bidi-override;

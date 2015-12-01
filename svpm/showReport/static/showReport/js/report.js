@@ -6,7 +6,13 @@ $(document).ready(function() {
     $("#exportAsJson").on('click', function (event) {
         exportTableToJson.apply(this, [$('#reporttable'), 'export_as_json.json']);
     });
+    createReportTable();
+    
+    $('#dataTables-example').dataTable();
+});
 
+
+function createReportTable(){
   $.get("reportAPI", function(data, status) {
     var byRisk = data.slice(0);
     byRisk.sort(function(a, b) {
@@ -14,7 +20,7 @@ $(document).ready(function() {
     });
 
     $.each(byRisk, function(index, element) {
-      $('#reporttable > tbody:last-child').append("<tr>"
+      $('#dataTables-example > tbody:last-child').append("<tr id='qwert'>"
       + "<td>"+ element.assetInfo.ip + "</td>"
       + "<td>"+ ((element.assetInfo.rating*2 + element.severity)/2) + "</td>"
       + "<td>"+ element.title + "</td>"
@@ -26,9 +32,9 @@ $(document).ready(function() {
       + "</tr>");
     });
   }, "json");
+  //$('#dataTables-example').trigger("update");
 
-});
-
+}
 function exportTableToCSV($table, filename) {
         $rows = $table.find('tr');
         var csvData = "";
