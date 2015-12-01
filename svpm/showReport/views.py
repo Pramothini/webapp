@@ -2,6 +2,7 @@ from django.shortcuts import render, render_to_response
 from showReport.models import *
 from rest_framework import viewsets
 from showReport.serializers import *
+from showReport.permissions import IsAdminOrReadOnly
 
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
@@ -55,8 +56,10 @@ API endpoints
 class ReportViewSet(viewsets.ModelViewSet):
     queryset = ReportTable.objects.all()
     serializer_class = ReportSerializer
+    permission_classes = (IsAdminOrReadOnly,)
 
 class AssetViewSet(viewsets.ModelViewSet):
     queryset = AssetRating.objects.all()
     serializer_class = AssetSerializer
+    permission_classes = (IsAdminOrReadOnly,)
 

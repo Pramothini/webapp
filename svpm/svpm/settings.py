@@ -71,7 +71,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'svpm.wsgi.application'
+# Used by the authentication system.
+# URL to use if the authentication system requires a user to log in.
+LOGIN_URL = '/login'
 
+# Default URL to redirect to after a user logs in.
+LOGIN_REDIRECT_URL = '/home'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
