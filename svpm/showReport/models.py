@@ -16,3 +16,5 @@ class ReportTable(models.Model):
     severity = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(10)])
     assetInfo = models.ForeignKey(AssetRating)
 
+class CSVDocument(models.Model):
+    csvfile = models.FileField(upload_to='%Y/%m/%d')
