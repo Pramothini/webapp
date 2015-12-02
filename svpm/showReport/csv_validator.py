@@ -135,7 +135,6 @@ def writeProblemsToString(problems, summarize=False, limit=0):
             counts[code] += 1
         else:
             counts[code] = 1
-
         if 'code' in p and p['code']:
         	if 'row' in p and 'message' in p:
         		reportString += "\nRow %s: " % p['row']
@@ -152,15 +151,15 @@ def writeProblemsToString(problems, summarize=False, limit=0):
         			reportString += " in header!"	
           	if p['code'] == 'RECORD_LENGTH_CHECK_FAILED':
           			if 'length' in p and p['length']:
-        				reportString += "Record length is %s, expected to be 25." % p['length']
+        				reportString += "Record length is %s, expected to be 25!" % p['length']
           	if p['code'] == 'IP_VALUE_CHECK_FAILED':
           			if 'value' in p:
           				if p['value']:
-        					reportString += "Invalid IP value \'%s\', expected to be in format xxx.xxx.xxx.xxx and \'xxx\' between 0 and 255." % p['value']			
+        					reportString += "Invalid IP value \'%s\', expected to be in format xxx.xxx.xxx.xxx and \'xxx\' between 0 and 255!" % p['value']			
         				else:
         					reportString += "Empty IP value! Not allowed!"
           	if p['code'] == 'SEVERITY_VALUE_CHECK_FAILED':
           			if 'value' in p and p['value']:
-        					reportString += "Invalid severity value \'%s\', expected to be between 1 and 10." % p['value']
+        					reportString += "Invalid severity value \'%s\', expected to be between 1 and 10 or empty!" % p['value']
     reportString += "\n\nFound %s problem in total.\n" % total
     return reportString
