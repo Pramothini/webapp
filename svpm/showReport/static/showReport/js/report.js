@@ -1,10 +1,10 @@
 $(document).ready(function() {
     $("#exportAsCsv").on('click', function (event) {
-        exportTableToCSV.apply(this, [$('#reporttable'), 'export.csv']);
+        exportTableToCSV.apply(this, [$('#dataTables-example'), 'export.csv']);
     });
 
     $("#exportAsJson").on('click', function (event) {
-        exportTableToJson.apply(this, [$('#reporttable'), 'export_as_json.json']);
+        exportTableToJson.apply(this, [$('#dataTables-example'), 'export_as_json.json']);
     });
     createReportTable();
     
