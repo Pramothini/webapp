@@ -32,6 +32,7 @@ def assets(request):
 
 def csvInput(request):
     validationMessage = ""
+    validateResult = 0
     # Handle file upload
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
@@ -44,17 +45,18 @@ def csvInput(request):
                 newCSV.save()
                 print newCSV.csvfile.name
                 # Redirect to the document list after POST
-                return HttpResponseRedirect(reverse('csvInput'))
+                # return HttpResponseRedirect(reverse('csvInput'))
     else:
         form = UploadFileForm() # An empty form
 
+    print validateResult
     # Load documents for the list page
     allCSVFiles = CSVDocument.objects.all()
 
     # Render list page with the documents and the form
     return render_to_response(
-        'csvInput.html',
-        {'allCSVFiles': allCSVFiles, 'form': form, 'validationMessage': validationMessage},
+        'horizontal-admin/table.html',
+        {'allCSVFiles': allCSVFiles, 'form': form,'validateResult': validateResult, 'validationMessage': validationMessage},
         context_instance=RequestContext(request)
     )  
 
