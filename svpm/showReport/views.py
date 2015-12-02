@@ -53,7 +53,7 @@ def csvInput(request):
 
     # Render list page with the documents and the form
     return render_to_response(
-        'csvInput.html',
+        'horizontal-admin/table.html',
         {'allCSVFiles': allCSVFiles, 'form': form, 'validationMessage': validationMessage},
         context_instance=RequestContext(request)
     )  
