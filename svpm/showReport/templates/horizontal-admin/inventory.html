@@ -72,7 +72,7 @@
         <li class="active"><a href="inventory"><i class="icon-facetime-video"></i><span>Assets</span> </a></li>
         
       </ul>
-
+    {% if request.user.is_staff %} 
       <form class="pull-right" style="position:relative;height:100%;margin-top:1%;align:bottom;" action="{% url 'csvInput' %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
         <div class="inputBtnSection">
@@ -83,6 +83,7 @@
           </label>
         <button type="submit" class="btn btn-default btn-file uploadBtn">Upload</button>
       </form>
+      {% endif %}
 
     </div>
     <!-- /container --> 
