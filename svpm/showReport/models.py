@@ -7,7 +7,6 @@ class AssetRating(models.Model):
     rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)],default='5')
                 
 class ReportTable(models.Model):
-    businessRisk = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(10)])
     title = models.TextField()
     cveId = models.CharField(max_length=100)
     threat = models.TextField()

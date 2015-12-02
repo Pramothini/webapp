@@ -3,7 +3,6 @@
     "model": "showReport.ReportTable",
     "pk": 1,
     "fields": {
-        "businessRisk": 2,
         "title": "CentOS Security Update for bind (CESA-2015:1705)",
         "cveId": "CVE-2015-5722",
         "threat": "DCentOS has released security update for bind to fix the vulnerabilities. Affected Products: centos 6 centos 7",
@@ -17,7 +16,6 @@
     "model": "showReport.ReportTable",
     "pk": 2,
     "fields": {
-        "businessRisk": 2,
         "title": "CentOS Security Update for libXfont (CESA-2015:1708)",
         "cveId": "CVE-2015-1802, CVE-2015-1803, CVE-2015-1804",
         "threat": "CentOS has released security update for bind to fix the vulnerabilities. Affected Products: centos 6 centos 7",
@@ -31,7 +29,6 @@
     "model": "showReport.ReportTable",
     "pk": 3,
     "fields": {
-        "businessRisk": 2,
         "title": "CentOS Security Update for openldap (CESA-2015:1840)",
         "cveId": "CVE-2015-6908",
         "threat": "CentOS has released security update for openldap to fix the vulnerabilities. Affected Products: centos 5 centos 6 centos 7",
@@ -45,7 +42,6 @@
     "model": "showReport.ReportTable",
     "pk": 4,
     "fields": {
-        "businessRisk": 2,
         "title": "CentOS Security Update for httpd Security Update (CESA-2015:1668)",
         "cveId": "CVE-2015-3183",
         "threat": "CentOS has released security update for httpd security update to fix the vulnerabilities. Affected Products: centos 6",
@@ -59,7 +55,6 @@
     "model": "showReport.ReportTable",
     "pk": 5,
     "fields": {
-        "businessRisk": 2,
         "title": "CentOS Security Update for gdk-pixbuf2 (CESA-2015:1694)",
         "cveId": "CVE-2015-4491",
         "threat": "CentOS has released security update for gdk-pixbuf2 to fix the vulnerabilities. Affected Products: centos 6",
@@ -73,7 +68,6 @@
     "model": "showReport.ReportTable",
     "pk": 6,
     "fields": {
-        "businessRisk": 2,
         "title": "CentOS Security Update for nss-softokn (CESA-2015:1699)",
         "cveId": "CVE-2015-2730",
         "threat": "CentOS has released security update for nss-softokn to fix the vulnerabilities. Affected Products: centos 6 centos 7",
@@ -87,7 +81,6 @@
     "model": "showReport.ReportTable",
     "pk": 7,
     "fields": {
-        "businessRisk": 2,
         "title": "UDP Constant IP Identification Field Fingerprinting Vulnerability",
         "cveId": "CVE-2002-0510",
         "threat": "The host transmits UDP packets with a constant IP Identification field. This behavior may be exploited to discover the operating system and approximate kernel version of the vulnerable system. Normally, the IP Identification field is intended to be a reasonably unique value, and is used to reconstruct fragmented packets. It has been reported that in some versions of the Linux kernel IP stack implementation as well as other operating systems, UDP packets are transmitted with a constant IP Identification field of 0.",
@@ -101,7 +94,6 @@
     "model": "showReport.ReportTable",
     "pk": 8,
     "fields": {
-        "businessRisk": 2,
         "title": "EOL/Obsolete Software: Apache Subversion Detected",
         "cveId": "0",
         "threat": "Apache Subversion (SVN) is a software versioning and revision control system distributed as free software under the Apache License used to maintain current and historical versions of files such as source code, web pages, and documentation. Apache has ended support for all versions for Subversion clients and servers versions prior to 1.7.18. THREAT COMMENTS:",
@@ -115,7 +107,6 @@
     "model": "showReport.ReportTable",
     "pk": 9,
     "fields": {
-        "businessRisk": 2,
         "title": "SSL Certificate - Signature Verification Failed Vulnerability",
         "cveId": "0",
         "threat": "An SSL Certificate associates an entity (person, organization, host, etc.) with a Public Key. In an SSL connection, the client authenticates the remote server using the server's Certificate and extracts the Public Key in the Certificate to establish the secure connection. The authentication is done by verifying that the public key in the certificate is signed by a trusted third-party Certificate Authority. If a client is unable to verify the certificate, it can abort communication or prompt the user to continue the communication without authentication.",

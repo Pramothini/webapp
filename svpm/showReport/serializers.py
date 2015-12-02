@@ -12,5 +12,5 @@ class ReportSerializer(serializers.ModelSerializer):
     assetInfo = AssetSerializer()
     class Meta:
         model = ReportTable
-        fields = ('businessRisk', 'title' , 'cveId','threat','impact','solution','severity','assetInfo')
+        fields = ('title' , 'cveId','threat','impact','solution','severity','assetInfo')
 
