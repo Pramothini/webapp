@@ -13,6 +13,9 @@ import csv_validator
 
 
 # Create your views here.
+def register(request):
+    return render(request, 'register.html')
+
 @login_required
 def charts(request):
     return render(request, 'bootstrap-responsive-admin-template/code/charts.html')
@@ -88,4 +91,6 @@ class AssetViewSet(viewsets.ModelViewSet):
     queryset = AssetRating.objects.all()
     serializer_class = AssetSerializer
     permission_classes = (IsAdminOrReadOnly,)
+
+
 
