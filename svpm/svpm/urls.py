@@ -28,7 +28,6 @@ urlpatterns = router.urls
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'showReport.views.menu', name='menu'),
-    url(r'^index$', 'showReport.views.index', name='index'),
     url(r'^charts$', 'showReport.views.charts', name='charts'),
     url(r'^table$', 'showReport.views.table', name='table'),
     url(r'^inventory$', 'showReport.views.inventory', name='inventory'),
