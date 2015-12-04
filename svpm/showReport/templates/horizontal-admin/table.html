@@ -76,7 +76,7 @@
         <div class="inputBtnSection">
           <input id="uploadFile" class="disableInputField" placeholder="< Browse and selct a CSV file>" disabled="disabled" />
           <label class="fileUpload">
-            <input id="uploadBtn" type="file" name="csvFile" class="upload" onchange="getElementById('uploadFile').value = getElementById('uploadBtn').value;"/>
+            <input id="uploadBtn" type="file" name="csvFile" class="upload" onchange="getElementById('uploadFile').value = getElementById('uploadBtn').value.replace(/^.*\\/, '');"/>
                 <button class="btn btn-default btn-file uploadBtn">Browse</button>
           </label>
         <button type="submit" class="btn btn-default btn-file uploadBtn">Upload</button>
