@@ -23,12 +23,14 @@ from django.conf import settings
 router = routers.DefaultRouter()
 router.register(r'reportAPI', views.ReportViewSet)
 router.register(r'assetAPI', views.AssetViewSet)
+router.register(r'userAPI', views.UserViewSet)
 urlpatterns = router.urls
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'showReport.views.menu', name='menu'),
     url(r'^charts$', 'showReport.views.charts', name='charts'),
+    url(r'^settings$', 'showReport.views.settings', name='settings'),
     url(r'^table$', 'showReport.views.table', name='table'),
     url(r'^inventory$', 'showReport.views.inventory', name='inventory'),
     url(r'^home$', 'showReport.views.home', name='home'),

@@ -63,6 +63,10 @@
                     </li>
                     <li><a href="inventory"><i class="icon-facetime-video"></i><span>Assets</span>
                     </a></li>
+
+                    {% if request.user.is_staff %} 
+                    <li><a href="settings"><i class="icon-user"></i><span>User Settings</span> </a> </li>
+                    {% endif %}
                     
                 </ul>
 

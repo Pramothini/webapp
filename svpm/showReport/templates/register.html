@@ -4,6 +4,7 @@
 {% block headblock %}
 <script src="{% static 'bootstrap-responsive-admin-template/code/js/signin.js' %}"></script>
 <link href="{% static 'bootstrap-responsive-admin-template/code/css/pages/signin.css' %}" rel="stylesheet" type="text/css">
+<script src="{% static 'showReport/js/register.js' %}"></script>
 
 {% endblock %}
 
@@ -17,7 +18,6 @@
 	
 	<div class="content clearfix">
 		
-		<form action="/usersAPI/" method="post">
 		
 			<h1>Signup </h1>			
 			
@@ -28,6 +28,16 @@
 				<div class="field">
 					<label for="username">User Name:</label>
 					<input type="text" id="username" name="username" value="" placeholder="User Name" class="login" />
+				</div> <!-- /field -->
+
+				<div class="field">
+					<label for="firstname">First Name:</label>
+					<input type="text" id="first_name" name="first_name" value="" placeholder="First Name" class="login" />
+				</div> <!-- /field -->
+				
+				<div class="field">
+					<label for="lastname">Last Name:</label>	
+					<input type="text" id="last_name" name="last_name" value="" placeholder="Last Name" class="login" />
 				</div> <!-- /field -->
 				
 				<div class="field">
@@ -46,14 +56,15 @@
 				</div> <!-- /field -->
 				
 			</div> <!-- /login-fields -->
+                 <div id = "error" style="color:red">
+                 </div>
+
 			
 			<div class="login-actions">
 									
-				<button class="button btn btn-primary btn-large">Register</button>
+				<button id = "register" class="button btn btn-primary btn-large">Register</button>
 				
 			</div> <!-- .actions -->
-			
-		</form>
 		
 	</div> <!-- /content -->
 	

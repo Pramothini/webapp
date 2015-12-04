@@ -10,11 +10,16 @@ from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from showReport.forms import UploadFileForm
 import csv_validator
+from django.contrib.auth.models import User
 
 
 # Create your views here.
 def register(request):
+    if request.method == 'GET':
+        return render(request, 'register.html')
+    serialized = UserSerializer
     return render(request, 'register.html')
+
 
 @login_required
 def charts(request):
@@ -23,6 +28,10 @@ def charts(request):
 @login_required
 def table(request):
     return render(request, 'horizontal-admin/table.html')
+
+@login_required
+def settings(request):
+    return render(request, 'horizontal-admin/settings.html')
 
 @login_required
 def inventory(request):
@@ -91,6 +100,13 @@ class AssetViewSet(viewsets.ModelViewSet):
     queryset = AssetRating.objects.all()
     serializer_class = AssetSerializer
     permission_classes = (IsAdminOrReadOnly,)
+
+class UserViewSet(viewsets.ModelViewSet):
+    # permissin_classes = [
+    #     permissions.AllowAny # Or anon users can't register
+    # ]
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
 
 
 
