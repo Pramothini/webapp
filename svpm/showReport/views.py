@@ -2,7 +2,7 @@ from django.shortcuts import render, render_to_response
 from showReport.models import *
 from rest_framework import viewsets
 from showReport.serializers import *
-from showReport.permissions import IsAdminOrReadOnly
+from showReport.permissions import *
 from django.contrib.auth.decorators import login_required
 
 from django.http import HttpResponseRedirect
@@ -111,6 +111,7 @@ class UserViewSet(viewsets.ModelViewSet):
     # ]
     serializer_class = UserSerializer
     queryset = User.objects.all()
+    permission_classes = (editUserDetails,)
 
 
 def pullCSVData(filePath):
