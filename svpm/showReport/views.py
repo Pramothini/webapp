@@ -13,7 +13,6 @@ import csv_validator
 from django.contrib.auth.models import User
 import csv
 import os
-from django.conf import settings
 
 
 # Create your views here.
@@ -69,10 +68,10 @@ def csvInput(request):
             validateResult, validationMessage = csv_validator.validateCSV(request.FILES['csvFile'])
             if not validateResult:
                 # Save the uploaded file
-                newCSV = CSVDocument(csvfile = request.FILES['csvFile'])
-                newCSV.save()
-                print newCSV.csvfile.name
-                pullCSVData(newCSV.csvfile.name)
+                #newCSV = CSVDocument(csvfile = request.FILES['csvFile'])
+                #newCSV.save()
+                #print newCSV.csvfile.name
+                pullCSVData(request.FILES['csvFile'])
 
                 # Redirect to the document list after POST
                 # return HttpResponseRedirect(reverse('csvInput'))
@@ -117,8 +116,8 @@ class UserViewSet(viewsets.ModelViewSet):
 def pullCSVData(filePath):
     insert_list = []
     unique_ips = set()
-    f = open(os.path.join(settings.MEDIA_ROOT, filePath))
-    reader = csv.reader(f)
+    # f = open(os.path.join(settings.MEDIA_ROOT, filePath))
+    reader = csv.reader(filePath)
     for row in reader:
         if row[0] == 'IP':
             #Header row found (Assuming a good csv file)
@@ -137,7 +136,7 @@ def pullCSVData(filePath):
 
     ReportTable.objects.bulk_create(insert_list)
 
-    f.close()
+    filePath.close()
     return
 
 
