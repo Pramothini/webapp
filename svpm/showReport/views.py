@@ -36,7 +36,8 @@ def settings(request):
 
 @login_required
 def inventory(request):
-    return render(request, 'horizontal-admin/inventory.html')
+    asset_data=AssetRating.objects.all()
+    return render(request, 'horizontal-admin/inventory.html', {"asset_data":asset_data.values()})
 
 @login_required
 def menu(request):
