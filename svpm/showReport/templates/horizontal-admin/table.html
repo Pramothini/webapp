@@ -84,6 +84,12 @@
       </form>
       {% endif %}
 
+        {% if validateResult == 1 %}
+        <script>
+          alert('{{ validationMessage }}')
+        </script>
+        {% endif %}
+
     </div>
     <!-- /container --> 
   </div>
