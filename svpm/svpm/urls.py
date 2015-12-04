@@ -23,13 +23,14 @@ from django.conf import settings
 router = routers.DefaultRouter()
 router.register(r'reportAPI', views.ReportViewSet)
 router.register(r'assetAPI', views.AssetViewSet)
+router.register(r'userAPI', views.UserViewSet)
 urlpatterns = router.urls
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'showReport.views.menu', name='menu'),
-    url(r'^index$', 'showReport.views.index', name='index'),
     url(r'^charts$', 'showReport.views.charts', name='charts'),
+    url(r'^settings$', 'showReport.views.settings', name='settings'),
     url(r'^table$', 'showReport.views.table', name='table'),
     url(r'^inventory$', 'showReport.views.inventory', name='inventory'),
     url(r'^home$', 'showReport.views.home', name='home'),
@@ -37,6 +38,7 @@ urlpatterns = patterns('',
     url(r'^assets$', 'showReport.views.assets', name='assets'),
     url(r'^csvinput$', 'showReport.views.csvInput', name='csvInput'),
     url(r'^login$', 'django.contrib.auth.views.login', {'template_name':'login.html'}),
+    url(r'^register$', 'showReport.views.register', name='register'),
     url(r'^logout$', 'django.contrib.auth.views.logout_then_login'),
     url(r'^', include(router.urls))
 
