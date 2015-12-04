@@ -15,12 +15,24 @@ function getCookie(name) {
 }
 
 $(document).ready(function() {
-  fetchAssetData();
+  var data = fetchAssetData();
+    $('#bulkEditAssetRating').on("change", function(){
+      changedRating = this.value;
+      //update the individual entries
+      var result = data['responseText'];
+      $.each(JSON.parse(result), function(index, element) {
+        check = document.getElementById("select_for_bulk_update_" + element.ip);
+        if(check.checked){
+          var myId = element.ip.replace(/\./g, '_');
+          $('#'+myId).val(changedRating);
+        }
+      });
+  })
 });
 
 function fetchAssetData(){
 
-  $.get("assetAPI", function(data, status){
+  return $.get("assetAPI", function(data, status){
     var byRating = data.slice(0);
 
     byRating.sort(function(a,b) {
@@ -30,6 +42,7 @@ function fetchAssetData(){
     $.each(byRating, function(index, element) {
       var myId = element.ip.replace(/\./g, '_');
       $('#dataTables-example > tbody:last-child').append("<tr>"
+      + "<td >"+ '<input type="checkbox" style="float:right" id=select_for_bulk_update_'+element.ip+'>' + "</td>"
       + "<td>"+ element.ip + "</td>"
 
       + "<td> <select id='"+myId+"' name = 'rating'>"

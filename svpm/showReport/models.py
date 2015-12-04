@@ -8,7 +8,7 @@ class AssetRating(models.Model):
                 
 class ReportTable(models.Model):
     title = models.TextField()
-    cveId = models.CharField(max_length=100)
+    cveId = models.CharField(max_length=1000)
     threat = models.TextField()
     impact = models.TextField()
     solution = models.TextField()

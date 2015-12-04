@@ -3091,11 +3091,11 @@
 		}
 	
 		// This split doesn't matter where _MENU_ is, we get three items back from it
-		var a = settings.oLanguage.sLengthMenu.split(/(_MENU_)/);
-		div.children()
-			.append( a[0] )
-			.append( select )
-			.append( a[2] );
+	//	var a = settings.oLanguage.sLengthMenu.split(/(_MENU_)/);
+	//	div.children()
+	//		.append( a[0] )
+	//		.append( select )
+	//		.append( a[2] );
 	
 		select
 			.val( settings._iDisplayLength )
@@ -10733,7 +10733,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLengthMenu": "Show _MENU_ entries",
+			//"sLengthMenu": "Show _MENU_ entries",
 	
 	
 			/**
