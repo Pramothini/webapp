@@ -74,14 +74,10 @@ def csvInput(request):
     else:
         form = UploadFileForm() # An empty form
 
-    print validateResult
-    # Load documents for the list page
-    allCSVFiles = CSVDocument.objects.all()
-
     # Render list page with the documents and the form
     return render_to_response(
         'horizontal-admin/table.html',
-        {'allCSVFiles': allCSVFiles, 'form': form,'validateResult': validateResult, 'validationMessage': validationMessage},
+        {'form': form,'validateResult': validateResult, 'validationMessage': validationMessage},
         context_instance=RequestContext(request)
     )  
 
