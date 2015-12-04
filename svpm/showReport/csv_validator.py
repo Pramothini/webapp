@@ -54,7 +54,7 @@ def create_validator():
 	# CVE ID value check
 	
 	# Severity value check
-	severity_pattern = '^\s*$|^[1-9]$|^10$'
+	severity_pattern = '^\s*$|^[0-9](\.\d)?$|^10(\.0)?$'
 	validator.add_value_check('Severity', match_pattern(severity_pattern), 'SEVERITY_VALUE_CHECK_FAILED', 'Severity value is not correct!')
 
 	return validator
@@ -67,13 +67,13 @@ def validateCSV(inputFile):
 
 	# check file suffix
 	if not inputFile.name.endswith('.csv'):
-		validateMessage += 'failed!\n\nError: %s is NOT a csv file!\n' % inputFile.name
+		validateMessage += 'failed!\\n\\nError: %s is NOT a csv file!\\n' % inputFile.name
 		validateCode = 1
 		return validateCode, validateMessage
 
 	# file size check
 	if inputFile.size > max_file_size:
-		validateMessage += 'failed!\n\nError: %s size too big for processing!\nFile size limit: %dMB.\n' % (inputFile, max_file_size / (1024 * 1024))
+		validateMessage += 'failed!\\n\\nError: %s size too big for processing!\\nFile size limit: %dMB.\\n' % (inputFile, max_file_size / (1024 * 1024))
 		validateCode = 1
 		return validateCode, validateMessage
 
@@ -91,17 +91,17 @@ def validateCSV(inputFile):
 		counter += 1;
 
 	if ignoredLines == 0 and counter == 0:
-		validateMessage += "failed!\n\nError: %s is empty!\n" % inputFile
+		validateMessage += "failed!\\n\\nError: %s is empty!\\n" % inputFile
 		validateCode = 1
 		return validateCode, validateMessage
 
 	if not headerFlag:
-		validateMessage += "failed!\n\nError: %s does not have a header with the 1st field as 'IP'!" % inputFile
+		validateMessage += "failed!\\n\\nError: %s does not have a header with the 1st field as 'IP'!" % inputFile
 		validateCode = 1
 		return validateCode, validateMessage
 
 	if ignoredLines == counter - 1:
-		validateMessage += "failed!\n\nError: %s has no useful data!" % inputFile
+		validateMessage += "failed!\\n\\nError: %s has no useful data!" % inputFile
 		validateCode = 1
 		return validateCode, validateMessage		
 
@@ -113,7 +113,7 @@ def validateCSV(inputFile):
 	problems = validator.validate(backupData, ignore_lines=ignoredLines) 
  
 	if problems:
-		validateMessage += "failed!\n\n Errors:"
+		validateMessage += "failed!\\n\\nErrors:"
 		validateMessage += writeProblemsToString(problems)
 		validateCode = 1
 	
@@ -137,17 +137,17 @@ def writeProblemsToString(problems, summarize=False, limit=0):
             counts[code] = 1
         if 'code' in p and p['code']:
         	if 'row' in p and 'message' in p:
-        		reportString += "\nRow %s: " % p['row']
+        		reportString += "\\nRow %s: " % p['row']
         	if p['code'] == 'HEADER_CHECK_FAILED':
         		if 'missing' in p and p['missing']:
         			reportString += "Missing fileds"
         			for cur in p['missing']:
-        				reportString += " \'%s\'" % cur
+        				reportString += " [%s]" % cur
         			reportString += " in header! "
         		if 'unexpected' in p and p['unexpected']:
         			reportString += "Unexpected fields"
         			for cur in p['unexpected']:
-        				reportString += " \'%s\'" % cur
+        				reportString += " [%s]" % cur
         			reportString += " in header!"	
           	if p['code'] == 'RECORD_LENGTH_CHECK_FAILED':
           			if 'length' in p and p['length']:
@@ -155,11 +155,11 @@ def writeProblemsToString(problems, summarize=False, limit=0):
           	if p['code'] == 'IP_VALUE_CHECK_FAILED':
           			if 'value' in p:
           				if p['value']:
-        					reportString += "Invalid IP value \'%s\', expected to be in format xxx.xxx.xxx.xxx and \'xxx\' between 0 and 255!" % p['value']			
+        					reportString += "Invalid IP value [%s], expected to be between 0.0.0.0 and 255.255.255.255!" % p['value']		
         				else:
         					reportString += "Empty IP value! Not allowed!"
           	if p['code'] == 'SEVERITY_VALUE_CHECK_FAILED':
           			if 'value' in p and p['value']:
-        					reportString += "Invalid severity value \'%s\', expected to be between 1 and 10 or empty!" % p['value']
-    reportString += "\n\nFound %s problem in total.\n" % total
+        					reportString += "Invalid severity value [%s], expected to be between 1 and 10 or empty!" % p['value']
+    reportString += "\\n\\nFound %s problem in total.\\n" % total
     return reportString
