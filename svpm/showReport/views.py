@@ -12,8 +12,6 @@ from showReport.forms import UploadFileForm
 import csv_validator
 from django.contrib.auth.models import User
 import csv
-import os
-
 
 # Create your views here.
 def register(request):
@@ -37,7 +35,8 @@ def settings(request):
 
 @login_required
 def inventory(request):
-    return render(request, 'horizontal-admin/inventory.html')
+    asset_data=AssetRating.objects.all()
+    return render(request, 'horizontal-admin/inventory.html', {"asset_data":asset_data.values()})
 
 @login_required
 def menu(request):
@@ -73,19 +72,16 @@ def csvInput(request):
                 #print newCSV.csvfile.name
                 pullCSVData(request.FILES['csvFile'])
 
+
                 # Redirect to the document list after POST
                 # return HttpResponseRedirect(reverse('csvInput'))
     else:
         form = UploadFileForm() # An empty form
 
-    print validateResult
-    # Load documents for the list page
-    allCSVFiles = CSVDocument.objects.all()
-
     # Render list page with the documents and the form
     return render_to_response(
         'horizontal-admin/table.html',
-        {'allCSVFiles': allCSVFiles, 'form': form,'validateResult': validateResult, 'validationMessage': validationMessage},
+        {'form': form,'validateResult': validateResult, 'validationMessage': validationMessage},
         context_instance=RequestContext(request)
     )  
 

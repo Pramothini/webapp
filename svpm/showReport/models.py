@@ -14,6 +14,3 @@ class ReportTable(models.Model):
     solution = models.TextField()
     severity = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(10)])
     assetInfo = models.ForeignKey(AssetRating, db_column="assetInfo")
-
-class CSVDocument(models.Model):
-    csvfile = models.FileField(upload_to='%Y/%m/%d')
