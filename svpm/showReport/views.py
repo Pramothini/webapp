@@ -10,6 +10,9 @@ from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from showReport.forms import UploadFileForm
 import csv_validator
+import csv
+import os
+from django.conf import settings
 
 
 # Create your views here.
@@ -60,6 +63,8 @@ def csvInput(request):
                 newCSV = CSVDocument(csvfile = request.FILES['csvFile'])
                 newCSV.save()
                 print newCSV.csvfile.name
+                pullCSVData(newCSV.csvfile.name)
+
                 # Redirect to the document list after POST
                 # return HttpResponseRedirect(reverse('csvInput'))
     else:
@@ -92,5 +97,31 @@ class AssetViewSet(viewsets.ModelViewSet):
     serializer_class = AssetSerializer
     permission_classes = (IsAdminOrReadOnly,)
 
+
+def pullCSVData(filePath):
+    insert_list = []
+    unique_ips = set()
+    f = open(os.path.join(settings.MEDIA_ROOT, filePath))
+    reader = csv.reader(f)
+    for row in reader:
+        if row[0] == 'IP':
+            #Header row found (Assuming a good csv file)
+            break
+
+    ReportTable.objects.all().delete()
+
+    #Populate data from here
+    for row in reader:
+        if row[0] not in unique_ips:
+            if AssetRating.objects.filter(ip=row[0]).exists() is False:
+                AssetRating.objects.create(ip=row[0])
+        unique_ips.add(row[0])
+
+        insert_list.append(ReportTable(title=row[6], impact=row[17],cveId=row[13],severity=row[8],solution=row[18],threat=row[16], assetInfo=AssetRating.objects.get(ip=row[0])))
+
+    ReportTable.objects.bulk_create(insert_list)
+
+    f.close()
+    return
 
 
