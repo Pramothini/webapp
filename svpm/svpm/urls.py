@@ -36,6 +36,7 @@ urlpatterns = patterns('',
     url(r'^login$', 'django.contrib.auth.views.login', {'template_name':'login.html'}),
     url(r'^register$', 'showReport.views.register', name='register'),
     url(r'^logout$', 'django.contrib.auth.views.logout_then_login'),
+    url(r'^$', 'django.contrib.auth.views.login', {'template_name':'login.html'}),
     url(r'^', include(router.urls))
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
