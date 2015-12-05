@@ -37,24 +37,7 @@ def settings(request):
 def inventory(request):
     asset_data=AssetRating.objects.all()
     return render(request, 'horizontal-admin/inventory.html', {"asset_data":asset_data.values()})
-
-@login_required
-def menu(request):
-    return render(request, 'menu.html')
-
-@login_required
-def home(request):
-    return render(request, 'home.html')
-
-@login_required
-def report(request):
-    return render(request, 'report.html')
-
-@login_required
-def assets(request):
-    asset_data=AssetRating.objects.all()
-    return render(request, 'assets.html', {"asset_data":asset_data.values()})
-
+    
 @login_required
 def csvInput(request):
     validationMessage = ""
