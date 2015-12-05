@@ -1,7 +1,12 @@
 ﻿{% extends "main.html" %}
 {% load staticfiles %}
-{% block headblock %}
 
+{% block bootstrapScriptblock %} 
+<!-- BOOTSTRAP CORE STYLE  -->
+    <link href="{% static 'horizontal-admin/assets/css/bootstrap.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block headblock %}
 <!-- REPORT TABLE SCRIPTS  -->
     <script src="{% static 'showReport/js/report.js' %}"></script>
 {% endblock %}
