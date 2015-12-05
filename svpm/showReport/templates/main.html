@@ -67,7 +67,7 @@
         
       </ul>
       {% if request.user.is_staff %} 
-      <form class="pull-right" style="position:relative;height:100%;margin-top:1%;align:bottom;z-index: 0" action="{% url 'csvInput' %}" method="post" enctype="multipart/form-data">
+      <form class="pull-right" style="position:relative;height:100%;margin-top:1%;align:bottom;" action="{% url 'csvInput' %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
         <div class="inputBtnSection">
           <input id="uploadFile" class="disableInputField" placeholder="< Browse and selct a CSV file>" disabled="disabled" />
