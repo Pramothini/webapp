@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+{% load staticfiles %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <title>Software Patch Management</title>
+    <!-- BOOTSTRAP CORE STYLE  -->
+    <link href="{% static 'horizontal-admin/assets/css/bootstrap.css' %}" rel="stylesheet" />
+
+    <!-- DATATABLE STYLE  -->
+    <!-- Is this necessary? - it causes 2 errors -->
+    <link href="{% static 'horizontal-admin/assets/js/dataTables/dataTables.bootstrap.css' %}" rel="stylesheet" />
+
+    <link href="{% static 'bootstrap-responsive-admin-template/code/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap-responsive-admin-template/code/css/bootstrap-responsive.min.css' %}" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
+            rel="stylesheet">
+    <link href="{% static 'bootstrap-responsive-admin-template/code/css/font-awesome.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap-responsive-admin-template/code/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap-responsive-admin-template/code/css/pages/dashboard.css' %}" rel="stylesheet">
+    <link href="{% static 'showReport/custom_css.css' %}" rel="stylesheet"> 
+
+
+    <script src="{% static 'horizontal-admin/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS  -->
+    <script src="{% static 'horizontal-admin/assets/js/bootstrap.js' %}"></script>
+    <!-- DATATABLE SCRIPTS  -->
+    <script src="{% static 'horizontal-admin/assets/js/dataTables/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'horizontal-admin/assets/js/dataTables/dataTables.bootstrap.js' %}"></script>
+      <!-- CUSTOM SCRIPTS  -->
+    <script src="{% static 'horizontal-admin/assets/js/custom.js' %}"></script>
+      <!-- REPORT TABLE SCRIPTS  -->
+
+{% block headblock %} {% endblock %}
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
+                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">Software Patch Management </a>
+      <div class="nav-collapse">
+        <ul class="nav pull-right">
+
+          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                            class="icon-user"></i> {{user.username}} <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="\logout">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!--/.nav-collapse --> 
+    </div>
+    <!-- /container --> 
+  </div>
+  <!-- /navbar-inner --> 
+</div>
+<!-- /navbar -->
+<div class="subnavbar">
+  <div class="subnavbar-inner">
+    <div class="container">
+      <ul class="mainnav">
+<!--         <li><a href="index"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li> -->
+        {% block navbar %}{% endblock %}
+        
+      </ul>
+      {% if request.user.is_staff %} 
+      <form class="pull-right" style="position:relative;height:100%;margin-top:1%;align:bottom;z-index: 0" action="{% url 'csvInput' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+        <div class="inputBtnSection">
+          <input id="uploadFile" class="disableInputField" placeholder="< Browse and selct a CSV file>" disabled="disabled" />
+          <label class="fileUpload">
+            <input id="uploadBtn" type="file" name="csvFile" class="upload" onchange="getElementById('uploadFile').value = getElementById('uploadBtn').value.replace(/^.*\\/, '');"/>
+                <button class="btn btn-default btn-file uploadBtn">Browse</button>
+          </label>
+        <button type="submit" class="btn btn-default btn-file uploadBtn">Upload</button>
+      </form>
+      {% endif %}
+
+        {% if validateResult == 1 %}
+        <script>
+          alert('{{ validationMessage }}')
+        </script>
+        {% endif %}
+
+    </div>
+    <!-- /container --> 
+  </div>
+  <!-- /subnavbar-inner --> 
+</div>
+
+    </div>
+    </div>
+    </div>
+
+{% block bodyblock %} {% endblock %}
+ <!-- FOOTER SECTION END-->
+    <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+    <!-- CORE JQUERY  -->
+   
+ <!-- /extra -->
+    <div class="footer">
+        <div class="footer-inner">
+            <div class="container">
+                <div class="row">
+                    Software Patch Management
+                    <!-- /span12 -->
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div>
+        <!-- /footer-inner -->
+    </div>
+    <!-- /footer -->
+</body>
+</html>
+
