@@ -41,13 +41,14 @@
             
             <div class="login-actions">
             {% if form.errors %}
-                 <div style="color:red">
-                       {{ form.errors }}
-                      Incorrect user name and password.
-                 </div>
+            <div style="color:red">
+                {% for error in form.non_field_errors %}
+                    <strong>{{ error|escape }}</strong>
+                {% endfor %}
+            </div>
             {% endif %}
                                     
-                <button class="button btn btn-success btn-large">Sign In</button>
+            <button class="button btn btn-success btn-large">Sign In</button>
                 
             </div> <!-- .actions -->
             
