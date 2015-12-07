@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block navbar %}
-        <li><a href="charts"><i class="icon-bar-chart"></i><span>Charts</span> </a> </li>
+        <li><a href="charts"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
         <li><a href="table"><i class="icon-list-alt"></i><span>Reports</span> </a> </li>
         <li class="active"><a href="inventory"><i class="icon-sitemap"></i><span>Assets</span> </a></li>
         {% if request.user.is_staff %} 
@@ -47,6 +47,10 @@
                                                             <option>4</option>
                                                             <option>5</option>
                                                 </select> </label>
+                                            <label style="float:right">Search IP:
+                                                <input  id="searchAsset" onchange="displaySearchResults()" type="text" maxlength="15" style="width: 120px;height:30px">
+                                                </input> </label>
+
                                         </div>
                                         <div id="dataTables-example_filter" class="dataTables_filter">
                                         </div>

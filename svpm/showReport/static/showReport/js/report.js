@@ -8,31 +8,32 @@ $(document).ready(function() {
     });
     createReportTable();
     
-    $('#dataTables-example').dataTable();
+    
 });
 
 
 function createReportTable(){
+
   $.get("reportAPI", function(data, status) {
     var byRisk = data.slice(0);
     byRisk.sort(function(a, b) {
       return (((b.assetInfo.rating * 2 + b.severity) / 2) - ((a.assetInfo.rating * 2 + a.severity) / 2));
     });
 
+
     $.each(byRisk, function(index, element) {
       $('#dataTables-example > tbody:last-child').append("<tr id='qwert'>"
-      + "<td>"+ element.assetInfo.ip + "</td>"
-      + "<td>"+ ((element.assetInfo.rating*2 + element.severity)/2) + "</td>"
-      + "<td>"+ element.title + "</td>"
-      + "<td>"+ element.cveId + "</td>"
-      + "<td>"+ element.threat + "</td>"
-      + "<td>"+ element.impact + "</td>"
-      + "<td>"+ element.solution + "</td>"
-      + "<td>"+ element.severity + "</td>"
+      + "<td style='word-wrap:break-word;'>"+ element.assetInfo.ip + "</td>"
+      + "<td style='word-wrap:break-word;'>"+ ((element.assetInfo.rating*2 + element.severity)/2) + "</td>"
+      + "<td style='word-wrap:break-word;'>"+ element.title + "</td>"
+      + "<td style='word-wrap:break-word;'>"+ element.cveId + "</td>"
+      + "<td style='word-wrap:break-word;'>"+ element.threat + "</td>"
+      + "<td style='word-wrap:break-word;'>"+ element.impact + "</td>"
+      + "<td style='word-wrap:break-word;'>"+ element.solution + "</td>"
+      + "<td style='word-wrap:break-word;'>"+ element.severity + "</td>"
       + "</tr>");
     });
   }, "json");
-  //$('#dataTables-example').trigger("update");
 
 }
 function exportTableToCSV($table, filename) {

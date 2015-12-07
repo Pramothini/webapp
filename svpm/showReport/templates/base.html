@@ -9,16 +9,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes"> 
     
-<link href="{% static 'bootstrap-responsive-admin-template/code/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
-<link href="{% static 'bootstrap-responsive-admin-template/code/css/bootstrap-responsive.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'bootstrap-responsive-admin-template/code/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'bootstrap-responsive-admin-template/code/css/bootstrap-responsive.min.css' %}" rel="stylesheet" type="text/css" />
 
-<link href="{% static 'bootstrap-responsive-admin-template/code/css/font-awesome.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap-responsive-admin-template/code/css/font-awesome.css' %}" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
-
-<script src="{% static 'bootstrap-responsive-admin-template/code/js/jquery-1.7.2.min.js' %}"></script>
-<script src="{% static 'bootstrap-responsive-admin-template/code/js/bootstrap.js' %}"></script>
+    <link href="{% static 'bootstrap-responsive-admin-template/code/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap-responsive-admin-template/code/css/pages/signin.css' %}" rel="stylesheet" type="text/css">
+    <script src="{% static 'bootstrap-responsive-admin-template/code/js/jquery-1.7.2.min.js' %}"></script>
 
 {% block headblock %}{% endblock %}
+
+
 
 </head>
 <body>
@@ -35,7 +37,7 @@
                 <span class="icon-bar"></span>
             </a>
             
-            <a class="brand" href="index.html">
+            <a class="brand" href="#">
                 Software Patch Management               
             </a>        
             
@@ -46,13 +48,6 @@
                         {% block navbar %} {% endblock %}
                     </li>
                     
-                    <li class="">                       
-                        <a href="index.html" class="">
-                            <i class="icon-chevron-left"></i>
-                            Back to Homepage
-                        </a>
-                        
-                    </li>
                 </ul>
                 
             </div><!--/.nav-collapse -->    
@@ -64,5 +59,9 @@
 </div> <!-- /navbar -->
 
 {% block bodyblock %} {% endblock %}
+
+<script src="{% static 'bootstrap-responsive-admin-template/code/js/bootstrap.js' %}"></script>
+<script src="{% static 'bootstrap-responsive-admin-template/code/js/signin.js' %}"></script>
+
 </body>
 </html>

@@ -22,8 +22,10 @@ $(document).ready(function() {
 });
 
 function registerUser(){
-	if($("#password").val() != $("#confirm_password").val())
+	if($("#password").val() != $("#confirm_password").val()){
+    $("#error").empty();
 		$("#error").append("password does not match confirm password");
+  }
 	else{
 	$.ajaxSetup({
     beforeSend: function(xhr, settings) {
@@ -51,7 +53,8 @@ function registerUser(){
           },
           error: function(error){
             $("#error").empty();
-          	$("#error").append(error.responseText.replace(/"|[|]|{|}|/gi, ''));
+          	// $("#error").append(error.responseText.replace(/"|[|]|{|}|/gi, ''));
+            $("#error").append("Error during Registeration");
             console.log("error while registering user",error);
           }
         });

@@ -1,13 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-{% block headblock %}
-
-<script src="{% static 'bootstrap-responsive-admin-template/code/js/signin.js' %}"></script>
-<link href="{% static 'bootstrap-responsive-admin-template/code/css/pages/signin.css' %}" rel="stylesheet" type="text/css">
-
-{% endblock %}
-
 {% block navbar %} 
 <a href="register" class=""> Don't have an account? </a> 
 {% endblock %}
@@ -62,8 +55,8 @@
 
 
 
-<div class="login-extra">
+<!-- <div class="login-extra">
     <a href="#">Reset Password</a>
-</div> <!-- /login-extra -->
+</div>  -->
 
 {% endblock %}

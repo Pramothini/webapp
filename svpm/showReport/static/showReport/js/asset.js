@@ -104,3 +104,41 @@ function updateAssetRating(assetData){
 
   });
 }
+
+function displaySearchResults(){
+
+  if(isNaN($('#searchAsset').val().replace(/\./g, ''))){
+    //alert('Invalid search string! Only numbers and dots are allowed!');
+    $('#searchAsset').val('');
+    return;
+  }
+  $('#dataTables-example > tbody').empty();
+  $.get("assetAPI", function(data, status){
+    var byRating = data.slice(0);
+
+    byRating.sort(function(a,b) {
+      return b.rating - a.rating;
+    });
+
+    $.each(byRating, function(index, element) {
+      var myId = element.ip.replace(/\./g, '_');
+      if(element.ip.indexOf($('#searchAsset').val()) >= 0){
+        $('#dataTables-example > tbody:last-child').append("<tr>"
+        + "<td >"+ '<input type="checkbox" style="float:right" id=select_for_bulk_update_'+element.ip+'>' + "</td>"
+        + "<td>"+ element.ip + "</td>"
+
+        + "<td> <select id='"+myId+"' name = 'rating'>"
+        + "<option>1</option>"
+        + "<option>2</option>"
+        + "<option>3</option>"
+        + "<option>4</option>"
+        + "<option>5</option>"
+        + "</select> </td>"
+
+        + "</tr>");
+        $('#'+myId).val(element.rating);
+
+      }
+    });
+  }, "json");
+}
