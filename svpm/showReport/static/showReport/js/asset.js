@@ -13,21 +13,39 @@ function getCookie(name) {
     }
     return cookieValue;
 }
-
-$(document).ready(function() {
-  var data = fetchAssetData();
-    $('#bulkEditAssetRating').on("change", function(){
-      changedRating = this.value;
-      //update the individual entries
-      var result = data['responseText'];
-      $.each(JSON.parse(result), function(index, element) {
-        check = document.getElementById("select_for_bulk_update_" + element.ip);
-        if(check.checked){
-          var myId = element.ip.replace(/\./g, '_');
-          $('#'+myId).val(changedRating);
+function markBulkRating(changedRating){
+      $.each($('#dataTables-example').find("tbody>tr"), function(index, element) {
+        var rowdata = element['innerHTML']
+        var rowelements = $.parseHTML(rowdata);
+        var chkBox = $.parseHTML(rowelements[0]['innerHTML']);
+        var chkBoxId = $(chkBox).attr('id');
+        if(document.getElementById(chkBoxId).checked){
+          var thisRating = $.parseHTML(rowelements[2]['innerHTML'])[1];
+          var thisRatingId = $(thisRating).attr('id');
+          $('#'+thisRatingId).val(changedRating);
         }
       });
+}
+$(document).ready(function() {
+  var data = fetchAssetData();
+  $('#bulkEditAssetRating').on("change", function(){
+      markBulkRating(this.value);
   })
+
+  $("#selectAllAssets").change(function() {
+    var isChecked = this.checked;
+    $.each($('#dataTables-example').find("tbody>tr"), function(index, element) {
+      var rowdata = element['innerHTML']
+      var rowelements = $.parseHTML(rowdata);
+      var chkBox = $.parseHTML(rowelements[0]['innerHTML']);
+      var chkBoxId = $(chkBox).attr('id');
+      if(isChecked) {
+        document.getElementById(chkBoxId).checked = true;
+      } else {
+        document.getElementById(chkBoxId).checked = false;
+      }
+    });
+  });
 });
 
 function fetchAssetData(){
@@ -137,6 +155,8 @@ function displaySearchResults(){
 
         + "</tr>");
         $('#'+myId).val(element.rating);
+        document.getElementById('selectAllAssets').checked = false;
+
 
       }
     });
