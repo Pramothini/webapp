@@ -108,7 +108,8 @@ function updateAssetRating(assetData){
 function displaySearchResults(){
 
   if(isNaN($('#searchAsset').val().replace(/\./g, ''))){
-    alert('Invalid search string! Only numbers and dots are allowed!');
+    //alert('Invalid search string! Only numbers and dots are allowed!');
+    $('#searchAsset').val('');
     return;
   }
   $('#dataTables-example > tbody').empty();
