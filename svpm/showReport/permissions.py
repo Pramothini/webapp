@@ -15,3 +15,16 @@ class IsAdminOrReadOnly(permissions.BasePermission):
             return True
         # Write permissions are only allowed to the admin user.
         return request.user.is_staff
+
+
+class editUserDetails(permissions.BasePermission):
+    """
+    Custom permission
+    """
+
+    def has_permission(self, request, view):
+        #only admin user can read other user information
+        if request.method in permissions.SAFE_METHODS and not request.user.is_staff:
+            return False
+        # Any user can post a new request
+        return True

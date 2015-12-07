@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'svpm.wsgi.application'
 LOGIN_URL = '/login'
 
 # Default URL to redirect to after a user logs in.
-LOGIN_REDIRECT_URL = '/home'
+LOGIN_REDIRECT_URL = '/charts'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases

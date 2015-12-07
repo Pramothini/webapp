@@ -1,11 +1,34 @@
 $(document).ready(function() {
     $("#exportAsCsv").on('click', function (event) {
-        exportTableToCSV.apply(this, [$('#reporttable'), 'export.csv']);
+        exportTableToCSV.apply(this, [$('#dataTables-example'), 'export.csv']);
     });
 
     $("#exportAsJson").on('click', function (event) {
-        exportTableToJson.apply(this, [$('#reporttable'), 'export_as_json.json']);
+        exportTableToJson.apply(this, [$('#dataTables-example'), 'export_as_json.json']);
     });
+
+    createReportTable();
+
+    $('th').click(function(){
+    var table = $(this).parents('table').eq(0)
+    var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()))
+    this.asc = !this.asc
+    if (!this.asc){rows = rows.reverse()}
+    for (var i = 0; i < rows.length; i++){table.append(rows[i])}
+    })
+    function comparer(index) {
+    return function(a, b) {
+        var valA = getCellValue(a, index), valB = getCellValue(b, index)
+        return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB)
+    }
+    }
+    function getCellValue(row, index){ return $(row).children('td').eq(index).html() }
+
+    
+});
+
+
+function createReportTable(){
 
   $.get("reportAPI", function(data, status) {
     var byRisk = data.slice(0);
@@ -13,22 +36,22 @@ $(document).ready(function() {
       return (((b.assetInfo.rating * 2 + b.severity) / 2) - ((a.assetInfo.rating * 2 + a.severity) / 2));
     });
 
+
     $.each(byRisk, function(index, element) {
-      $('#reporttable > tbody:last-child').append("<tr>"
-      + "<td>"+ element.assetInfo.ip + "</td>"
-      + "<td>"+ ((element.assetInfo.rating*2 + element.severity)/2) + "</td>"
-      + "<td>"+ element.title + "</td>"
-      + "<td>"+ element.cveId + "</td>"
-      + "<td>"+ element.threat + "</td>"
-      + "<td>"+ element.impact + "</td>"
-      + "<td>"+ element.solution + "</td>"
-      + "<td>"+ element.severity + "</td>"
+      $('#dataTables-example > tbody:last-child').append("<tr id='qwert'>"
+      + "<td style='word-wrap:break-word;'>"+ element.assetInfo.ip + "</td>"
+      + "<td style='word-wrap:break-word;'>"+ ((element.assetInfo.rating*2 + element.severity)/2) + "</td>"
+      + "<td style='word-wrap:break-word;'>"+ element.title + "</td>"
+      + "<td style='word-wrap:break-word;'>"+ element.cveId + "</td>"
+      + "<td style='word-wrap:break-word;'>"+ element.threat + "</td>"
+      + "<td style='word-wrap:break-word;'>"+ element.impact + "</td>"
+      + "<td style='word-wrap:break-word;'>"+ element.solution + "</td>"
+      + "<td style='word-wrap:break-word;'>"+ element.severity + "</td>"
       + "</tr>");
     });
   }, "json");
 
-});
-
+}
 function exportTableToCSV($table, filename) {
         $rows = $table.find('tr');
         var csvData = "";

@@ -15,12 +15,53 @@ function getCookie(name) {
 }
 
 $(document).ready(function() {
-  fetchAssetData();
+  var data = fetchAssetData();
+    $('#bulkEditAssetRating').on("change", function(){
+      //alert($('#dataTables-example').find("tbody>tr"));
+      $.each($('#dataTables-example').find("tbody>tr"), function(index, element) {
+        //alert(element['innerHTML']);
+        var rowdata = element['innerHTML']
+        var rowelements = $.parseHTML(rowdata);
+        alert(rowelements[0]['innerHTML'] + '\n' + rowelements[2]['innerHTML']);
+        var chkBox = $.parseHTML(rowelements[2]['innerHTML']);
+        $.each($(chkBox), function(index, element) {
+          console.log(index + ' : ' + element);
+          $.each(element, function(i, e) {
+            console.log(i + ' : ' + e);
+          });
+        });
+        alert($(chkBox));
+        alert($(chkBox).attr('id'));
+        var chkBoxId = $(chkBox).attr('id');
+        //alert(chkBoxId + document.getElementById(chkBoxId).checked);
+        if(document.getElementById(chkBoxId).checked){
+          alert(1);
+          var thisRating = $.parseHTML(rowelements[2]['innerHTML'])[0];
+          var thisRatingId = $(thisRating).attr('id');
+          alert(thisRating);
+          $('#'+thisRatingId).val(5);
+        }
+        // $.each($.parseHTML(rowdata), function(i, e) {
+        //   alert(i);
+        //   alert(e['innerHTML']);
+        // });
+      });
+      // changedRating = this.value;
+      // //update the individual entries
+      // var result = data['responseText'];
+      // $.each(JSON.parse(result), function(index, element) {
+      //   check = document.getElementById("select_for_bulk_update_" + element.ip);
+      //   if(check.checked){
+      //     var myId = element.ip.replace(/\./g, '_');
+      //     $('#'+myId).val(changedRating);
+      //   }
+      // });
+  })
 });
 
 function fetchAssetData(){
 
-  $.get("assetAPI", function(data, status){
+  return $.get("assetAPI", function(data, status){
     var byRating = data.slice(0);
 
     byRating.sort(function(a,b) {
@@ -29,7 +70,8 @@ function fetchAssetData(){
 
     $.each(byRating, function(index, element) {
       var myId = element.ip.replace(/\./g, '_');
-      $('#assettable > tbody:last-child').append("<tr>"
+      $('#dataTables-example > tbody:last-child').append("<tr>"
+      + "<td >"+ '<input type="checkbox" style="float:right" id=select_for_bulk_update_'+element.ip+'>' + "</td>"
       + "<td>"+ element.ip + "</td>"
 
       + "<td> <select id='"+myId+"' name = 'rating'>"
@@ -90,4 +132,42 @@ function updateAssetRating(assetData){
       }
 
   });
+}
+
+function displaySearchResults(){
+
+  if(isNaN($('#searchAsset').val().replace(/\./g, ''))){
+    //alert('Invalid search string! Only numbers and dots are allowed!');
+    $('#searchAsset').val('');
+    return;
+  }
+  $('#dataTables-example > tbody').empty();
+  $.get("assetAPI", function(data, status){
+    var byRating = data.slice(0);
+
+    byRating.sort(function(a,b) {
+      return b.rating - a.rating;
+    });
+
+    $.each(byRating, function(index, element) {
+      var myId = element.ip.replace(/\./g, '_');
+      if(element.ip.indexOf($('#searchAsset').val()) >= 0){
+        $('#dataTables-example > tbody:last-child').append("<tr>"
+        + "<td >"+ '<input type="checkbox" style="float:right" id=select_for_bulk_update_'+element.ip+'>' + "</td>"
+        + "<td>"+ element.ip + "</td>"
+
+        + "<td> <select id='"+myId+"' name = 'rating'>"
+        + "<option>1</option>"
+        + "<option>2</option>"
+        + "<option>3</option>"
+        + "<option>4</option>"
+        + "<option>5</option>"
+        + "</select> </td>"
+
+        + "</tr>");
+        $('#'+myId).val(element.rating);
+
+      }
+    });
+  }, "json");
 }

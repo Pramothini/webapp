@@ -3,126 +3,117 @@
     "model": "showReport.ReportTable",
     "pk": 1,
     "fields": {
-        "businessRisk": 2,
-        "title": "CentOS Security Update for bind (CESA-2015:1705)",
+        "title": "CentOS",
         "cveId": "CVE-2015-5722",
         "threat": "DCentOS has released security update for bind to fix the vulnerabilities. Affected Products: centos 6 centos 7",
         "impact": "This vulnerability can also be used to cause a complete denial of service and could render the resource completely unavailable.",
         "solution": "To resolve this issue, upgrade to the latest packages which contain a patch. Refer to CentOS advisory centos 6 (https://lists.centos.org/pipermail/centos-announce/2015-September/021367.html) and centos 7 (https://lists.centos.org/pipermail/centos-announce/2015-September/021372.html) for updates and patch information. Patch: Following are links for downloading patches to fix the vulnerabilities:  CESA-2015:1705: centos 6 (https://lists.centos.org/pipermail/centos-announce/2015-September/021367.html)  CESA-2015:1705: centos 7 (https://lists.centos.org/pipermail/centos-announce/2015-September/021372.html)",
         "severity": 3,
-        "assetInfo":1
+        "assetInfo":"10.1.14.19"
     }
   },
   {
     "model": "showReport.ReportTable",
     "pk": 2,
     "fields": {
-        "businessRisk": 2,
-        "title": "CentOS Security Update for libXfont (CESA-2015:1708)",
+        "title": "CentOS",
         "cveId": "CVE-2015-1802, CVE-2015-1803, CVE-2015-1804",
         "threat": "CentOS has released security update for bind to fix the vulnerabilities. Affected Products: centos 6 centos 7",
         "impact": "This vulnerability could be exploited to gain complete access to sensitive information. Malicious users could also use this vulnerability to change all the contents or configuration on the system. Additionally this vulnerability can also be used to cause a complete denial of service and could render the resource completely unavailable.",
         "solution": "To resolve this issue, upgrade to the latest packages which contain a patch. Refer to CentOS advisory centos 6 (https://lists.centos.org/pipermail/centos-announce/2015-September/021368.html) centos 7 (https://lists.centos.org/pipermail/centos-announce/2015-September/021371.html) for updates and patch information. Patch: Following are links for downloading patches to fix the vulnerabilities:  CESA-2015:1708: centos 6 (https://lists.centos.org/pipermail/centos-announce/2015-September/021368.html)  CESA-2015:1708: centos 7 (https://lists.centos.org/pipermail/centos-announce/2015-September/021371.html)",
         "severity": 1,
-        "assetInfo":2
+        "assetInfo":"10.1.14.12"
     }
   },
   {
     "model": "showReport.ReportTable",
     "pk": 3,
     "fields": {
-        "businessRisk": 2,
-        "title": "CentOS Security Update for openldap (CESA-2015:1840)",
+        "title": "CentOS",
         "cveId": "CVE-2015-6908",
         "threat": "CentOS has released security update for openldap to fix the vulnerabilities. Affected Products: centos 5 centos 6 centos 7",
         "impact": "This vulnerability can also be used to cause a limited denial of service in the form of interruptions in resource availability.",
         "solution": "To resolve this issue, upgrade to the latest packages which contain a patch. Refer to CentOS advisory centos 5 (https://lists.centos.org/pipermail/centos-announce/2015-September/021418.html), centos 6 (https://lists.centos.org/pipermail/centos-announce/2015-September/021419.html) and centos 7 (https://lists.centos.org/pipermail/centos-announce/2015-September/021420.html) for updates and patch information. Patch: Following are links for downloading patches to fix the vulnerabilities:  CESA-2015:1840: centos 5 (https://lists.centos.org/pipermail/centos-announce/2015-September/021418.html)  CESA-2015:1840: centos 6 (https://lists.centos.org/pipermail/centos-announce/2015-September/021419.html)  CESA-2015:1840: centos 7 (https://lists.centos.org/pipermail/centos-announce/2015-September/021420.html)",
         "severity": 5,
-        "assetInfo":3
+        "assetInfo":"10.1.12.96"
     }
   },
   {
     "model": "showReport.ReportTable",
     "pk": 4,
     "fields": {
-        "businessRisk": 2,
-        "title": "CentOS Security Update for httpd Security Update (CESA-2015:1668)",
+        "title": "CentOS",
         "cveId": "CVE-2015-3183",
         "threat": "CentOS has released security update for httpd security update to fix the vulnerabilities. Affected Products: centos 6",
         "impact": "N/A",
         "solution": "To resolve this issue, upgrade to the latest packages which contain a patch. Refer to CentOS advisory centos 6 (https://lists.centos.org/pipermail/centos-announce/2015-August/021344.html) for updates and patch information. Patch: Following are links for downloading patches to fix the vulnerabilities:  CESA-2015:1668: centos 6 (https://lists.centos.org/pipermail/centos-announce/2015-August/021344.html)",
         "severity": 2,
-        "assetInfo":4
+        "assetInfo":"10.1.12.9"
     }
   },
   {
     "model": "showReport.ReportTable",
     "pk": 5,
     "fields": {
-        "businessRisk": 2,
-        "title": "CentOS Security Update for gdk-pixbuf2 (CESA-2015:1694)",
+        "title": "CentOS",
         "cveId": "CVE-2015-4491",
         "threat": "CentOS has released security update for gdk-pixbuf2 to fix the vulnerabilities. Affected Products: centos 6",
         "impact": "This vulnerability could be exploited to gain partial access to sensitive information. Malicious users could also use this vulnerability to change partial contents or configuration on the system. Additionally this vulnerability can also be used to cause a limited denial of service in the form of interruptions in resource availability.",
         "solution": "To resolve this issue, upgrade to the latest packages which contain a patch. Refer to CentOS advisory centos 6 (https://lists.centos.org/pipermail/centos-announce/2015-August/021355.html) for updates and patch information. Patch: Following are links for downloading patches to fix the vulnerabilities:  CESA-2015:1694: centos 6 (https://lists.centos.org/pipermail/centos-announce/2015-August/021355.html)",
         "severity": 1,
-        "assetInfo":5
+        "assetInfo":"10.1.12.202"
     }
   },
   {
     "model": "showReport.ReportTable",
     "pk": 6,
     "fields": {
-        "businessRisk": 2,
-        "title": "CentOS Security Update for nss-softokn (CESA-2015:1699)",
+        "title": "fifth",
         "cveId": "CVE-2015-2730",
         "threat": "CentOS has released security update for nss-softokn to fix the vulnerabilities. Affected Products: centos 6 centos 7",
         "impact": "Malicious users could use this vulnerability to change partial contents or configuration on the system.",
         "solution": "To resolve this issue, upgrade to the latest packages which contain a patch. Refer to CentOS advisory centos 6 (https://lists.centos.org/pipermail/centos-announce/2015-September/021357.html) centos 7 (https://lists.centos.org/pipermail/centos-announce/2015-September/021362.html) for updates and patch information. Patch: Following are links for downloading patches to fix the vulnerabilities:  CESA-2015:1699: centos 6 (https://lists.centos.org/pipermail/centos-announce/2015-September/021357.html)  CESA-2015:1699: centos 7 (https://lists.centos.org/pipermail/centos-announce/2015-September/021362.html)",
         "severity": 4,
-        "assetInfo":6
+        "assetInfo":"10.1.12.162"
     }
   },
   {
     "model": "showReport.ReportTable",
     "pk": 7,
     "fields": {
-        "businessRisk": 2,
-        "title": "UDP Constant IP Identification Field Fingerprinting Vulnerability",
+        "title": "CentOS",
         "cveId": "CVE-2002-0510",
         "threat": "The host transmits UDP packets with a constant IP Identification field. This behavior may be exploited to discover the operating system and approximate kernel version of the vulnerable system. Normally, the IP Identification field is intended to be a reasonably unique value, and is used to reconstruct fragmented packets. It has been reported that in some versions of the Linux kernel IP stack implementation as well as other operating systems, UDP packets are transmitted with a constant IP Identification field of 0.",
         "impact": "By exploiting this vulnerability, a malicious user can discover the operating system and approximate kernel version of the host. This information can then be used in further attacks against the host.",
         "solution": "We are not currently aware of any fixes for this issue.",
         "severity": 5,
-        "assetInfo":7
+        "assetInfo":"10.1.15.249"
     }
   },
   {
     "model": "showReport.ReportTable",
     "pk": 8,
     "fields": {
-        "businessRisk": 2,
-        "title": "EOL/Obsolete Software: Apache Subversion Detected",
+        "title": "CentOS",
         "cveId": "0",
         "threat": "Apache Subversion (SVN) is a software versioning and revision control system distributed as free software under the Apache License used to maintain current and historical versions of files such as source code, web pages, and documentation. Apache has ended support for all versions for Subversion clients and servers versions prior to 1.7.18. THREAT COMMENTS:",
         "impact": "The system is at high risk of being exposed to security vulnerabilities. Since Apache no longer provides updates, obsolete software is more vulnerable to viruses and other attacks. IMPACT COMMENTS:",
         "solution": "Customers are advised to download and install Apache Subversion 1.7.18 (https://subversion.apache.org/packages.html) or later. Patch: Following are links for downloading patches to fix the vulnerabilities:  Apache Subversion 1.7.18 or later (https://subversion.apache.org/packages.html)SOLUTION COMMENTS:",
         "severity": 1,
-        "assetInfo":8
+        "assetInfo":"10.1.15.237"
     }
   },
   {
     "model": "showReport.ReportTable",
     "pk": 9,
     "fields": {
-        "businessRisk": 2,
-        "title": "SSL Certificate - Signature Verification Failed Vulnerability",
+        "title": "CentOS",
         "cveId": "0",
         "threat": "An SSL Certificate associates an entity (person, organization, host, etc.) with a Public Key. In an SSL connection, the client authenticates the remote server using the server's Certificate and extracts the Public Key in the Certificate to establish the secure connection. The authentication is done by verifying that the public key in the certificate is signed by a trusted third-party Certificate Authority. If a client is unable to verify the certificate, it can abort communication or prompt the user to continue the communication without authentication.",
         "impact": "By exploiting this vulnerability, man-in-the-middle attacks in tandem with DNS cache poisoning can occur. Exception: If the server communicates only with a restricted set of clients who have the server certificate or the trusted CA certificate, then the server or CA certificate may not be available publicly, and the scan will be unable to verify the signature.",
         "solution": "Please install a server certificate signed by a trusted third-party Certificate Authority.",
         "severity": 2,
-        "assetInfo":1
+        "assetInfo":"10.1.14.19"
     }
   }
 ]
