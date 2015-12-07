@@ -20,9 +20,10 @@ function markBulkRating(changedRating){
         var chkBox = $.parseHTML(rowelements[0]['innerHTML']);
         var chkBoxId = $(chkBox).attr('id');
         if(document.getElementById(chkBoxId).checked){
-          var thisRating = $.parseHTML(rowelements[2]['innerHTML'])[1];
+          var thisRating = $.parseHTML(rowelements[2]['innerHTML']);
           var thisRatingId = $(thisRating).attr('id');
-          $('#'+thisRatingId).val(changedRating);
+          $('#'+thisRatingId).rateit('value', changedRating);
+          //$('#'+thisRatingId).val(changedRating);
         }
       });
 }
@@ -63,29 +64,20 @@ function fetchAssetData(){
       + "<td >"+ '<input type="checkbox" style="float:right" id=select_for_bulk_update_'+element.ip+'>' + "</td>"
       + "<td>"+ element.ip + "</td>"
 
-      + "<td> <select id='"+myId+"' name = 'rating'>"
-      + "<option>1</option>"
-      + "<option>2</option>"
-      + "<option>3</option>"
-      + "<option>4</option>"
-      + "<option>5</option>"
-      + "</select> </td>"
-
-      //+ "<td>"
-      //+ ( (element.rating > 4) ? "<p id='star'>&#9733<p>" : "<p id='star'>&#9734<p>")
-      //+ ( (element.rating > 3) ? "<p id='star'>&#9733<p>" : "<p id='star'>&#9734<p>")
-      //+ ( (element.rating > 2) ? "<p id='star'>&#9733<p>" : "<p id='star'>&#9734<p>")
-      //+ ( (element.rating > 1) ? "<p id='star'>&#9733<p>" : "<p id='star'>&#9734<p>")
-      //+ ( (element.rating > 0) ? "<p id='star'>&#9733<p>" : "<p id='star'>&#9734<p>")
-      //+ "</td>"
+      + "<td>"
+      + '<div data-rateit-resetable="false" class="rateit" id="'+myId+'"></div>'
+      + "</td>"
 
       + "</tr>");
-      $('#'+myId).val(element.rating);
+      jQuery('div.rateit, span.rateit').rateit();
+      $('#'+myId).rateit('step', 1);
+      $('#'+myId).rateit('value', element.rating);
     });
   }, "json");
 }
 
-function updateAssetRating(assetData){
+function updateAssetRating(assets){
+  var errorflag;
   $.ajaxSetup({
     beforeSend: function(xhr, settings) {
         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
@@ -94,18 +86,20 @@ function updateAssetRating(assetData){
            }
        }
     });
-  
-  assetData = assetData.replace(/u'id'/g, "'id'");
-  assetData = assetData.replace(/'/g, "\"");
-  var errorflag = false;
-  $.each($.parseJSON(assetData), function (item, value) {
-      var myId = value.ip.replace(/\./g, '_');
-      var myRating = $('#'+myId+' option:selected').text();
-      if(value.rating != myRating){
+    $.each($('#dataTables-example').find("tbody>tr"), function(index, element) {
+
+      errorflag = false;
+      var rowdata = element['innerHTML']
+      var rowelements = $.parseHTML(rowdata);
+      var ipValue = $.parseHTML(rowelements[1]['innerHTML']);
+      ipValue = $(ipValue)[0]['data'];
+
+      var myId = ipValue.replace(/\./g, '_');
+      var myRating =$('#'+myId).rateit('value');
         $.ajax({
-          url: "/assetAPI/"+value.ip+"/",
+          url: "/assetAPI/"+ipValue+"/",
           type: "PUT",
-          data : {"ip": value.ip,"rating": myRating},
+          data : {"ip": ipValue,"rating": myRating},
           dataType : "json",
           success: function() {
             console.log(" successfully updated an asset info");
@@ -118,9 +112,14 @@ function updateAssetRating(assetData){
             }
           }
         });
-      }
 
   });
+  if(errorflag){
+    alert('Error while updating assets..!');
+  } else {
+    alert('Asset data updated successfully!');
+  }
+  location.reload();
 }
 
 function displaySearchResults(){
@@ -145,16 +144,16 @@ function displaySearchResults(){
         + "<td >"+ '<input type="checkbox" style="float:right" id=select_for_bulk_update_'+element.ip+'>' + "</td>"
         + "<td>"+ element.ip + "</td>"
 
-        + "<td> <select id='"+myId+"' name = 'rating'>"
-        + "<option>1</option>"
-        + "<option>2</option>"
-        + "<option>3</option>"
-        + "<option>4</option>"
-        + "<option>5</option>"
-        + "</select> </td>"
+        + "<td>"
+        + '<div data-rateit-resetable="false" class="rateit" id="'+myId+'"></div>'
+        + "</td>"
 
         + "</tr>");
-        $('#'+myId).val(element.rating);
+        //$('#'+myId).val(element.rating);
+        jQuery('div.rateit, span.rateit').rateit();
+        $('#'+myId).rateit('step', 1);
+        $('#'+myId).rateit('value', element.rating);
+
         document.getElementById('selectAllAssets').checked = false;
 
 
