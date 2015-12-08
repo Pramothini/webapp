@@ -150,7 +150,6 @@ def writeProblemsToString(problems, summarize=False, limit=0):
 						reportString += " [%s]" % cur
 					reportString += " in header!"	
 			if p['code'] == 'RECORD_LENGTH_CHECK_FAILED':
-				print "Here? RECORD LENGTH !"
 				if 'length' in p and p['length']:
 					reportString += "Record length is %s, expected to be 25!" % p['length']
 			if p['code'] == 'IP_VALUE_CHECK_FAILED':
