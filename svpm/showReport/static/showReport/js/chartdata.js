@@ -10,9 +10,9 @@ function getData(){
     if(br > 7){
       high = high + 1;
     } else if(br < 4){
-      medium = medium+1;
-    } else {
       low = low + 1;
+    } else {
+      medium = medium+1;
     }
     });
     var pieData = [
