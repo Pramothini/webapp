@@ -1,22 +1,17 @@
 var sevValue;
 var thresholdValue;
 $(document).ready(function() {
-  if(location.href.indexOf('charts') > -1) {
-    $('#modifyBR').slider();
-    $('#modifyThreshold').slider({ min: 1, max: 10, value: [3, 8], focus: true });
+  if(localStorage.getItem("BRCalObj") == null){
+    var BRCalObj = { 'sevValue': 5, 'assetValue': 5};
+    localStorage.setItem('BRCalObj', JSON.stringify(BRCalObj));
+  }
+//localStorage.removeItem('SevThresholds');
+  if(localStorage.getItem("SevThresholds") == null){
+    var SevThresholds = { 'low': 3, 'high': 8};
+    localStorage.setItem('SevThresholds', JSON.stringify(SevThresholds));
+  }
 
-    $("#modifyBR").on("slideStop", function(slideEvt) {
-      sevValue = slideEvt.value;
-      var BRCalObj = { 'sevValue': slideEvt.value, 'assetValue': (10 - slideEvt.value)};
-      localStorage.setItem('BRCalObj', JSON.stringify(BRCalObj));
-
-      $('#currAssetW').text('Asset Rating Component: '+sevValue);
-      $('#currSevW').text('Severity Rating Component: '+(10-sevValue));
-      getData(sevValue, thresholdValue);
-    });
-
-    $("#modifyThreshold").on("slideStop", function(slideEvt) {
-      thresholdValue = slideEvt.value;
+  thresholdValue = [JSON.parse(localStorage.getItem('SevThresholds'))['low'], JSON.parse(localStorage.getItem('SevThresholds'))['high']];
       //Special cases
       if((thresholdValue[1])==(thresholdValue[0])){
         if((thresholdValue[1])==1){
@@ -34,18 +29,44 @@ $(document).ready(function() {
         $('#lowLegend').text('Low [value 1-'+thresholdValue[0]+']');
 
       }
-      getData(sevValue, thresholdValue);
+
+    $('#modifyBR').slider({ min: 0, max: 10, value: JSON.parse(localStorage.getItem('BRCalObj'))['sevValue'], focus: true });
+    $('#modifyThreshold').slider({ min: 1, max: 10, value: [JSON.parse(localStorage.getItem('SevThresholds'))['low'], JSON.parse(localStorage.getItem('SevThresholds'))['high']], focus: true });
+
+
+    var $loading = $('#loadingImg').hide();
+    $(document)
+    .ajaxStart(function () {
+        $loading.show();
+    })
+    .ajaxStop(function () {
+        $loading.hide();
+    });
+
+    $("#modifyBR").on("slideStop", function(slideEvt) {
+      sevValue = slideEvt.value;
+      var BRCalObj = { 'sevValue': slideEvt.value, 'assetValue': (10 - slideEvt.value)};
+      localStorage.setItem('BRCalObj', JSON.stringify(BRCalObj));
+
+      $('#currAssetW').text('Asset Rating Component: '+sevValue);
+      $('#currSevW').text('Severity Rating Component: '+(10-sevValue));
+      location.reload();
+    });
+
+    $("#modifyThreshold").on("slideStop", function(slideEvt) {
+      thresholdValue = slideEvt.value;
+      
+      var SevThresholds = { 'low': thresholdValue[0], 'high': thresholdValue[1]};
+
+      localStorage.setItem('SevThresholds', JSON.stringify(SevThresholds));
+
+      location.reload();
 
 
 
     });
-    sevValue = 5;
-    thresholdValue = [3, 8];
-    var BRCalObj = { 'sevValue': 5, 'assetValue': 5};
-    localStorage.setItem('BRCalObj', JSON.stringify(BRCalObj));
-    getData(sevValue, thresholdValue);
+    getData(JSON.parse(localStorage.getItem('BRCalObj'))['sevValue'], [JSON.parse(localStorage.getItem('SevThresholds'))['low'], JSON.parse(localStorage.getItem('SevThresholds'))['high']]);
 
-  }
 });
 function getData(sevValue, thresholdValue){
     if(location.href.indexOf('charts')){
