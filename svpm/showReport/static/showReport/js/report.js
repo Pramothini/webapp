@@ -29,7 +29,9 @@ $(document).ready(function() {
 
 
 function createReportTable(){
-
+    
+    // Retrieve the object from storage
+    var retrievedObject = JSON.parse(localStorage.getItem('BRCalObj'));
   $.get("reportAPI", function(data, status) {
     var byRisk = data.slice(0);
     byRisk.sort(function(a, b) {
@@ -40,7 +42,7 @@ function createReportTable(){
     $.each(byRisk, function(index, element) {
       $('#dataTables-example > tbody:last-child').append("<tr id='qwert'>"
       + "<td style='word-wrap:break-word;'>"+ element.assetInfo.ip + "</td>"
-      + "<td style='word-wrap:break-word;'>"+ ((element.assetInfo.rating*2 + element.severity)/2) + "</td>"
+      + "<td style='word-wrap:break-word;'>"+ (((element.assetInfo.rating*2)*retrievedObject['sevValue'] + (element.severity)*retrievedObject['assetValue'])/10) + "</td>"
       + "<td style='word-wrap:break-word;'>"+ element.title + "</td>"
       + "<td style='word-wrap:break-word;'>"+ element.cveId + "</td>"
       + "<td style='word-wrap:break-word;'>"+ element.threat + "</td>"
