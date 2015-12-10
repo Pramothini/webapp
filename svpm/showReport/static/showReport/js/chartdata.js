@@ -7,7 +7,7 @@ $(document).ready(function() {
 
     $("#modifyBR").on("slideStop", function(slideEvt) {
       sevValue = slideEvt.value;
-      var BRCalObj = { 'sevValue': slideEvt.value, 'assetValue': 10-slideEvt.value};
+      var BRCalObj = { 'sevValue': slideEvt.value, 'assetValue': (10 - slideEvt.value)};
       localStorage.setItem('BRCalObj', JSON.stringify(BRCalObj));
 
       $('#currAssetW').text('Asset Rating Component: '+sevValue);
@@ -30,11 +30,7 @@ $(document).ready(function() {
         }
       } else {
         $('#highLegend').text('High [value '+thresholdValue[1]+'-10]');
-        if((thresholdValue[1])-(thresholdValue[0])<2){
-          $('#mediumLegend').text('Medium [value --]');
-        } else {
-          $('#mediumLegend').text('Medium [value '+(thresholdValue[0]+1)+'-'+(thresholdValue[1]-1)+']');
-        }
+        $('#mediumLegend').text('Medium [value '+thresholdValue[0]+'-'+thresholdValue[1]+']');
         $('#lowLegend').text('Low [value 1-'+thresholdValue[0]+']');
 
       }
@@ -44,7 +40,7 @@ $(document).ready(function() {
 
     });
     sevValue = 5;
-    thresholdValue = '3,7';
+    thresholdValue = [3, 8];
     var BRCalObj = { 'sevValue': 5, 'assetValue': 5};
     localStorage.setItem('BRCalObj', JSON.stringify(BRCalObj));
     getData(sevValue, thresholdValue);
@@ -59,13 +55,12 @@ function getData(sevValue, thresholdValue){
   var medium = 0;
   var low = 0;
   var br;
-  //alert(thresholdValue[0]);
   $.get("reportAPI", function(data, status) {
     $.each(data, function(index, element) {
     br = ((element.assetInfo.rating*2)*assetValue + (element.severity)*sevValue)/10;
-    if(br >= thresholdValue[1]){
+    if(+br >= +thresholdValue[1]){
       high = high + 1;
-    } else if(br <= thresholdValue[0]){
+    } else if(+br <= +thresholdValue[0]){
       low = low + 1;
     } else {
       medium = medium+1;
