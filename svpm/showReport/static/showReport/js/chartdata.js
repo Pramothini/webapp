@@ -78,11 +78,11 @@ function getData(sevValue, thresholdValue){
         },
         {
             value: medium,
-            color: "#7777FF"
+            color: "#FFFF77"
         },
         {
             value: low,
-            color: "#FFFF77"
+            color: "#7777FF"
         }
 
       ];
