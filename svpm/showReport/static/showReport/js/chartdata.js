@@ -1,15 +1,71 @@
+var sevValue;
+var thresholdValue;
+$(document).ready(function() {
+  if(location.href.indexOf('charts') > -1) {
+    $('#modifyBR').slider();
+    $('#modifyThreshold').slider({ min: 1, max: 10, value: [3, 8], focus: true });
 
-function getData(){
+    $("#modifyBR").on("slideStop", function(slideEvt) {
+      sevValue = slideEvt.value;
+      var BRCalObj = { 'sevValue': slideEvt.value, 'assetValue': 10-slideEvt.value};
+      localStorage.setItem('BRCalObj', JSON.stringify(BRCalObj));
+
+      $('#currAssetW').text('Asset Rating Component: '+sevValue);
+      $('#currSevW').text('Severity Rating Component: '+(10-sevValue));
+      getData(sevValue, thresholdValue);
+    });
+
+    $("#modifyThreshold").on("slideStop", function(slideEvt) {
+      thresholdValue = slideEvt.value;
+      //Special cases
+      if((thresholdValue[1])==(thresholdValue[0])){
+        if((thresholdValue[1])==1){
+          $('#lowLegend').text('Low [value --]');
+          $('#mediumLegend').text('Medium [value --]');
+          $('#highLegend').text('High [value 1-10]');
+        } else {
+          $('#lowLegend').text('Low [value 1-'+(thresholdValue[0]-1) +']');
+          $('#mediumLegend').text('Medium [value --]');
+          $('#highLegend').text('High [value '+thresholdValue[1]+'-10]');
+        }
+      } else {
+        $('#highLegend').text('High [value '+thresholdValue[1]+'-10]');
+        if((thresholdValue[1])-(thresholdValue[0])<2){
+          $('#mediumLegend').text('Medium [value --]');
+        } else {
+          $('#mediumLegend').text('Medium [value '+(thresholdValue[0]+1)+'-'+(thresholdValue[1]-1)+']');
+        }
+        $('#lowLegend').text('Low [value 1-'+thresholdValue[0]+']');
+
+      }
+      getData(sevValue, thresholdValue);
+
+
+
+    });
+    sevValue = 5;
+    thresholdValue = '3,7';
+    var BRCalObj = { 'sevValue': 5, 'assetValue': 5};
+    localStorage.setItem('BRCalObj', JSON.stringify(BRCalObj));
+    getData(sevValue, thresholdValue);
+
+  }
+});
+function getData(sevValue, thresholdValue){
+    if(location.href.indexOf('charts')){
+
+  var assetValue = 10 - sevValue;
   var high = 0;
   var medium = 0;
   var low = 0;
   var br;
+  //alert(thresholdValue[0]);
   $.get("reportAPI", function(data, status) {
     $.each(data, function(index, element) {
-    br = (element.assetInfo.rating*2 + element.severity)/2;
-    if(br > 7){
+    br = ((element.assetInfo.rating*2)*assetValue + (element.severity)*sevValue)/10;
+    if(br >= thresholdValue[1]){
       high = high + 1;
-    } else if(br < 4){
+    } else if(br <= thresholdValue[0]){
       low = low + 1;
     } else {
       medium = medium+1;
@@ -33,4 +89,5 @@ function getData(){
       
       new Chart(document.getElementById("pie-chart").getContext("2d")).Pie(pieData);
   }, "json");
+}
 }
