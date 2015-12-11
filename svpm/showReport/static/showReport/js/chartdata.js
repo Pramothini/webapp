@@ -11,6 +11,9 @@ $(document).ready(function() {
     localStorage.setItem('SevThresholds', JSON.stringify(SevThresholds));
   }
 
+      sevValue = JSON.parse(localStorage.getItem('BRCalObj'))['sevValue'];
+      $('#currAssetW').text('Asset Rating Component: '+sevValue);
+      $('#currSevW').text('Severity Rating Component: '+(10-sevValue));
   thresholdValue = [JSON.parse(localStorage.getItem('SevThresholds'))['low'], JSON.parse(localStorage.getItem('SevThresholds'))['high']];
       //Special cases
       if((thresholdValue[1])==(thresholdValue[0])){
@@ -48,8 +51,6 @@ $(document).ready(function() {
       var BRCalObj = { 'sevValue': slideEvt.value, 'assetValue': (10 - slideEvt.value)};
       localStorage.setItem('BRCalObj', JSON.stringify(BRCalObj));
 
-      $('#currAssetW').text('Asset Rating Component: '+sevValue);
-      $('#currSevW').text('Severity Rating Component: '+(10-sevValue));
       location.reload();
     });
 
