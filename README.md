@@ -5,8 +5,48 @@ However, the CVSS Score is not sufficient to prioritize the patches since we als
 The purpose of this project is to get the environmental impact of the assets from the system administrator and prioritize the patches by combining the CVSS Score as well as the environmental impact and provide options to download reports in standard formats that could be easily integrated into a patch management tool.
 
 ##How to download and install the software
-The web application is hosted in heroku.
-Open software-patch-management.herokuapp.com in a web browser to use the application.
+The web application is hosted in heroku in the url:
+#####software-patch-management.herokuapp.com
+
+Inorder to develop or extend the project follow the steps: 
+
+### Download and Install Python<br />
+#####For Mac OS X
+	  Download Python from https://www.python.org/downloads/mac-osx/.  
+#####For Windows
+	Download Python from https://www.python.org/downloads/windows/.
+#####For other OS
+	Download Python from https://www.python.org/downloads/. 
+
+##### On Mac OS X
+Install Homebrew<br />
+	Open Terminal or your favorite OSX terminal emulator and run<br />
+$ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"<br />
+1.2.1.2 Set Environment Variable<br />
+	Insert Homebrew directory at the top of PATH environment variable, by adding the following line at the bottom of ~./profile file.<br />
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH<br />
+1.2.1.3 Install Python<br />
+	Run <br />
+$ brew install python<br />
+
+
+##### On Windows
+	Double click the downloaded installation file, which should be a MSI package, to install.
+
+
+##### Download and Install Django
+	Download from https://www.djangoproject.com/download/. 
+	The latest official version is 1.9.
+	Install with pip:
+pip install Django==1.9
+##### Download and Install PostgreSQL
+	Download PostgreSQL from http://www.enterprisedb.com/products-services-training/pgdownload. 
+	Open the downloaded package (.dmg for Mac OS X, and .exe for Windows) to install.
+
+##### Reference:
+[1] http://docs.python-guide.org/en/latest/starting/install/osx/<br />
+[2] http://docs.python-guide.org/en/latest/starting/install/win/ <br />
+[3] http://www.postgresql.org/download/ <br />
 
 ##How to use the software
 We have created a admin and a non admin account with the following credentials:
