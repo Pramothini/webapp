@@ -96,9 +96,15 @@
                                     Vulnerability Distribution by Business Risk</h3>
                             </div>
                             <!-- /widget-header -->
+
                             <div class="widget-content">
+                            <div id="loadingImg">
+                            <br/>
+                            <center><img src="{% static 'showReport/ajax-loader.gif'%}" class='bar'/></center>
+                            </div>
                                 <canvas id="pie-chart" class="chart-holder" width="538" height="250" float="left">
                                 <!-- /pie-chart -->
+
                                 </canvas>
 
                                 <div class="span4" style="float:right;">
@@ -130,7 +136,7 @@
                             </div>
                             <!-- /widget-header -->
                             <div class="widget-content">
-                                <div class="slider slider-horizontal" id="modifyBR" style="width: 314px;" data-slider-tooltip="hide" >
+                                <div class="slider slider-horizontal" id="modifyBR" style="width: 314px;"  data-slider-tooltip="hide" >
                                 </div>
                                                                     <br>
                                                                     <br>
@@ -214,7 +220,7 @@
     </div>
     <!-- /main -->
     <!-- /extra -->
-    <div class="footer">
+    <div class="footer navbar-fixed-bottom">
         <div class="footer-inner">
             <div class="container">
                 <div class="row">

@@ -7,6 +7,15 @@ $(document).ready(function() {
         exportTableToJson.apply(this, [$('#dataTables-example'), 'export_as_json.json']);
     });
 
+    var $loading = $('#loadingImg').hide();
+    $(document)
+    .ajaxStart(function () {
+        $loading.show();
+    })
+    .ajaxStop(function () {
+        $loading.hide();
+    });
+
     createReportTable();
 
     $('th').click(function(){
@@ -40,6 +49,12 @@ function createReportTable(){
 
 
     $.each(byRisk, function(index, element) {
+        //alert(byRisk.length);
+        // for(var i=0; i<byRisk.length; i++) {
+        //     index = byRisk[i];
+        //     element=byRisk[++i];
+        //     if(typeof element=='undefined')
+        //         break;
       $('#dataTables-example > tbody:last-child').append("<tr id='qwert'>"
       + "<td style='word-wrap:break-word;'>"+ element.assetInfo.ip + "</td>"
       + "<td style='word-wrap:break-word;'>"+ (((element.assetInfo.rating*2)*retrievedObject['sevValue'] + (element.severity)*retrievedObject['assetValue'])/10) + "</td>"

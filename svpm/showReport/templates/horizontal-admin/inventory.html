@@ -33,8 +33,10 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 Asset Ratings
+                                {% if request.user.is_staff %} 
                                 <button style="float: right;" onclick="location.href = 'inventory'">CANCEL</button>
                                 <button style="float: right;" onclick='updateAssetRating( "{{asset_data}}" )'>SUBMIT</button>
+                                {% endif %}
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">

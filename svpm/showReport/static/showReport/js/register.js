@@ -22,8 +22,14 @@ $(document).ready(function() {
 });
 
 function registerUser(){
+  if (!(/^(?=.*[@#$&*^%!+=\/\\[\]|?.,<>)(;:'"~`])(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,}/.test($("#password").val()))) {
+      $("#error").empty();$("#success").empty();
+      $("#error").append("Password must be atleast 8 characters long and should contain atleast one upper case, one lowercase , one special character and one number");
+      return;
+    } 
+
 	if($("#password").val() != $("#confirm_password").val()){
-    $("#error").empty();
+    $("#error").empty();$("#success").empty();
 		$("#error").append("password does not match confirm password");
   }
 	else{
@@ -48,11 +54,11 @@ function registerUser(){
           dataType : "json",
           success: function() {
             console.log(" successfully created user");
-            $("#error").empty();
-            $("#error").append("Congratulations! You are successfully registered. Please wait for the admin to approve you.")
+            $("#error").empty();$("#success").empty();
+            $("#success").append("Congratulations! You are successfully registered. Please wait for the admin to approve you.")
           },
           error: function(error){
-            $("#error").empty();
+            $("#error").empty();$("#success").empty();
           	// $("#error").append(error.responseText.replace(/"|[|]|{|}|/gi, ''));
             $("#error").append("Error during Registeration");
             console.log("error while registering user",error);
