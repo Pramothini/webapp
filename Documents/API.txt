@@ -1,0 +1,23 @@
+In this document, all the URLs intended to be used by the end user are listed.
+The URLs other than the main page need not be known though, as the user is intended to navigate from the web UI.
+
+Main page/Login page:
+http://software-patch-management.herokuapp.com/
+http://software-patch-management.herokuapp.com/login
+
+Register a new user:
+http://software-patch-management.herokuapp.com/register
+
+Dashboard:
+http://software-patch-management.herokuapp.com/charts
+
+Business risk based report:
+http://software-patch-management.herokuapp.com/table
+
+Asset data and asset importance rating:
+http://software-patch-management.herokuapp.com/inventory
+
+User settings for admin user:
+http://software-patch-management.herokuapp.com/settings
+
+
