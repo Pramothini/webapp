@@ -63,6 +63,7 @@
                     
                 </ul>
 
+    <!-- Use <form> and <type="submit"> to browse, select and upload file. -->
     {% if request.user.is_staff %} 
       <form class="pull-right" style="position:relative;height:100%;margin-top:1%;align:bottom;" action="{% url 'csvInput' %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
@@ -89,6 +90,7 @@
                     <div class="span6">
                         <!-- /widget -->
                         <!-- /widget -->
+                        <!-- Add a pie chart to display vulnerability distribution by business risk. -->
                         <div class="widget">
                             <div class="widget-header">
                                 <i class="icon-bar-chart"></i>
@@ -100,13 +102,14 @@
                             <div class="widget-content">
                             <div id="loadingImg">
                             <br/>
+                            <!-- Show a loading bar gif image while wait to load the pie chart. -->
                             <center><img src="{% static 'showReport/ajax-loader.gif'%}" class='bar'/></center>
                             </div>
                                 <canvas id="pie-chart" class="chart-holder" width="538" height="250" float="left">
                                 <!-- /pie-chart -->
 
                                 </canvas>
-
+                                <!-- Add legends for the pie chart. -->
                                 <div class="span4" style="float:right;">
                                     <button disabled class="btn" style="background-color:#FF7777;height:20px;width:20px;color:black;border-radius:0px;margin:3px;float:top"></button>
                                     <strong id="highLegend"> High [value 8-10]</strong>
@@ -128,6 +131,7 @@
                                         <div class="span6">
                         <!-- /widget -->
                         <!-- /widget -->
+                        <!-- Add a slider to allow users to modify business risk formula. By default, the formula is [business risk = 50% * severity + 50% * asset importance rating], with the two components in equal proportion (50%:50%). By dragging the pointer of the slider to left or right, users could change the proportion of severity and asset importance rating. The result could be displayed on the pie chart. -->
                         <div class="widget">
                             <div class="widget-header">
                                 <i class="icon-bar-chart"></i>
@@ -149,6 +153,7 @@
             Click for description
             </a>
          </div>
+         <!-- Display current raitio dynamically. -->
          <div id="collapseOne" class="accordion-body collapse">
             <div class="accordion-inner">
                There are two components involved in business risk calculation.<br>
@@ -161,6 +166,7 @@
       </div>
 
 </div>
+                                <!-- Display default ratio. -->
                                 <div class="span4" >
                                     <strong id="currAssetW">Asset Rating Component: 5</strong><br>
                                     <strong id="currSevW">Severity Rating Component: 5</strong>
@@ -172,6 +178,7 @@
                         </div>
                         <!-- /widget -->
                         <!-- /widget -->
+                        <!-- Add a slider to allow users to modify distribution range of the three business risk levels ("High", "Medium", and "Low"). By default, the range for "High" is [8-10], "Meidum" [3-8], and "Low" [1-3]. By dragging the two pointers of the slider to left or right, users could change the range of the three levels. The result could be displayed on the pie chart, the changed range value would also get reflected in the legends of the pie chart. -->
                         <div class="widget">
                             <div class="widget-header">
                                 <i class="icon-bar-chart"></i>
