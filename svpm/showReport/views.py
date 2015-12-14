@@ -49,19 +49,13 @@ def csvInput(request):
             # Validate the uploaded file
             validateResult, validationMessage = csv_validator.validateCSV(request.FILES['csvFile'])
             if not validateResult:
-                # Save the uploaded file
-                #newCSV = CSVDocument(csvfile = request.FILES['csvFile'])
-                #newCSV.save()
-                #print newCSV.csvfile.name
+                # Pull data from the uploaded file
                 pullCSVData(request.FILES['csvFile'])
-
-
-                # Redirect to the document list after POST
-                # return HttpResponseRedirect(reverse('csvInput'))
     else:
         form = UploadFileForm() # An empty form
 
     # Render list page with the documents and the form
+    # Return to table page
     return render_to_response(
         'horizontal-admin/table.html',
         {'form': form,'validateResult': validateResult, 'validationMessage': validationMessage},
