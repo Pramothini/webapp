@@ -1,12 +1,25 @@
+/**
+ * * performs this function when table.html loads
+*/
 $(document).ready(function() {
+    /**
+    * adds a event listener on the CSV hyperlink
+    */
+
     $("#exportAsCsv").on('click', function (event) {
         exportTableToCSV.apply(this, [$('#dataTables-example'), 'export.csv']);
     });
+    /**
+    * adds a event listener on the JSON hyperlink
+    */
 
     $("#exportAsJson").on('click', function (event) {
         exportTableToJson.apply(this, [$('#dataTables-example'), 'export_as_json.json']);
     });
 
+    /**
+    * display a loading gif whenever a ajax call is made
+    */
     var $loading = $('#loadingImg').hide();
     $(document)
     .ajaxStart(function () {
@@ -19,6 +32,10 @@ $(document).ready(function() {
     //Populate report table from database after calculating business risk
     createReportTable();
 
+    /**
+    * sorts the report table in the table.html file whenever a header is clicked
+    * when a header is clicked more than once , it toggles between ascending and descending order
+    */
     $('th').click(function(){
     var table = $(this).parents('table').eq(0)
     var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()))
@@ -38,6 +55,11 @@ $(document).ready(function() {
 });
 
 
+/**
+* makes a ajax call to reportAPI to get the report table details
+* sorts the report table details according to the business column
+* appends the sorted details to the UI
+*/
 function createReportTable(){
     
     // Retrieve the object from storage for calculating business risk
@@ -72,6 +94,12 @@ function createReportTable(){
   }, "json");
 
 }
+/**
+* exports the contents of the table in the UI to a csv file
+* table - the table object in the html file
+* filename - the name of the csv file to export
+* reads each row of the table in the html file and creats a csv file
+*/
 function exportTableToCSV($table, filename) {
         $rows = $table.find('tr');
         var csvData = "";
@@ -105,7 +133,13 @@ function exportTableToCSV($table, filename) {
 
 
 
- function exportTableToJson($table, filename){
+ /**
+* exports the contents of the table in the UI to a JSON file
+* table - the table object in the html file
+* filename - the name of the json file to export
+* reads each row of the table in the html file and creats a json file
+*/
+function exportTableToJson($table, filename){
         var myRows = [];
         var headersText = [];
         var $headers = $("th");
