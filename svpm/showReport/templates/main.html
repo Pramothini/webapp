@@ -2,13 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 {% load staticfiles %}
 <head>
+<!-- contains all the common UI for the table,settings and inventory.html pages  -->
+<!-- This file is inherited by other html files  -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
   <title>Software Patch Management</title>
 
   {% block bootstrapScriptblock %} {% endblock %}
-
 
   <!-- DATATABLE STYLE  -->
   <link href="{% static 'horizontal-admin/assets/js/dataTables/dataTables.bootstrap.css' %}" rel="stylesheet" />
