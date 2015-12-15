@@ -102,12 +102,14 @@ def pullCSVData(filePath):
     #Populate data from here
     for row in reader:
         if row[0] not in unique_ips:
+            #Add new IP to asset table
             if AssetRating.objects.filter(ip=row[0]).exists() is False:
                 AssetRating.objects.create(ip=row[0])
         unique_ips.add(row[0])
 
         insert_list.append(ReportTable(title=row[6], impact=row[17],cveId=row[13],severity=row[8],solution=row[18],threat=row[16], assetInfo=AssetRating.objects.get(ip=row[0])))
 
+    #Populate new report table in database
     ReportTable.objects.bulk_create(insert_list)
 
     filePath.close()
