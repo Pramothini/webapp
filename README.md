@@ -6,7 +6,7 @@ The purpose of this project is to get the environmental impact of the assets fro
 
 ##How to download and install the software
 The web application is hosted in heroku in the url:
-#####software-patch-management.herokuapp.com
+##### http://software-patch-management.herokuapp.com
 
 Inorder to develop or extend the project follow the steps: 
 
