@@ -1,5 +1,5 @@
 from rest_framework import permissions
-
+#used to set permissions to access the database tables
 
 class IsAdminOrReadOnly(permissions.BasePermission):
     """
