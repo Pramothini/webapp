@@ -14,14 +14,18 @@ function getCookie(name) {
     return cookieValue;
 }
 function markBulkRating(changedRating){
+      //fetch all table row elements in currently displayed html page
       $.each($('#dataTables-example').find("tbody>tr"), function(index, element) {
+        //For every row, fetch column contents
         var rowdata = element['innerHTML']
         var rowelements = $.parseHTML(rowdata);
         var chkBox = $.parseHTML(rowelements[0]['innerHTML']);
         var chkBoxId = $(chkBox).attr('id');
+        //if checkbox is checked in the row:
         if(document.getElementById(chkBoxId).checked){
           var thisRating = $.parseHTML(rowelements[2]['innerHTML']);
           var thisRatingId = $(thisRating).attr('id');
+          //Mark rating for that row equal to the selected rating
           $('#'+thisRatingId).rateit('value', changedRating);
           //$('#'+thisRatingId).val(changedRating);
         }
@@ -33,16 +37,20 @@ $(document).ready(function() {
       markBulkRating(this.value);
   })
 
+  //Select all checkbox change trigger
   $("#selectAllAssets").change(function() {
     var isChecked = this.checked;
+    //fetch all table row elements in currently displayed html page
     $.each($('#dataTables-example').find("tbody>tr"), function(index, element) {
       var rowdata = element['innerHTML']
       var rowelements = $.parseHTML(rowdata);
       var chkBox = $.parseHTML(rowelements[0]['innerHTML']);
       var chkBoxId = $(chkBox).attr('id');
       if(isChecked) {
+        //check all the check boxes
         document.getElementById(chkBoxId).checked = true;
       } else {
+        //un-check all the check boxes
         document.getElementById(chkBoxId).checked = false;
       }
     });
@@ -51,15 +59,18 @@ $(document).ready(function() {
 
 function fetchAssetData(){
 
+  //Get asset information from DB
   return $.get("assetAPI", function(data, status){
     var byRating = data.slice(0);
 
+    //Sort the displayed data according to the rating
     byRating.sort(function(a,b) {
       return b.rating - a.rating;
     });
 
     $.each(byRating, function(index, element) {
       var myId = element.ip.replace(/\./g, '_');
+      //Dynamically populate the rows
       $('#dataTables-example > tbody:last-child').append("<tr>"
       + "<td >"+ '<input type="checkbox" style="float:right" id=select_for_bulk_update_'+element.ip+'>' + "</td>"
       + "<td>"+ element.ip + "</td>"
@@ -69,6 +80,7 @@ function fetchAssetData(){
       + "</td>"
 
       + "</tr>");
+      //Assign stars based on rating
       jQuery('div.rateit, span.rateit').rateit();
       $('#'+myId).rateit('step', 1);
       $('#'+myId).rateit('value', element.rating);
@@ -86,6 +98,7 @@ function updateAssetRating(assets){
            }
        }
     });
+    //fetch all table row elements in currently displayed html page
     $.each($('#dataTables-example').find("tbody>tr"), function(index, element) {
 
       errorflag = false;
@@ -96,6 +109,7 @@ function updateAssetRating(assets){
 
       var myId = ipValue.replace(/\./g, '_');
       var myRating =$('#'+myId).rateit('value');
+      //PUT request to update the asset rating
         $.ajax({
           url: "/assetAPI/"+ipValue+"/",
           type: "PUT",
@@ -114,6 +128,7 @@ function updateAssetRating(assets){
         });
 
   });
+  //Success alert or error alert
   if(errorflag){
     alert('Error while updating assets..!');
   } else {
@@ -124,12 +139,15 @@ function updateAssetRating(assets){
 
 function displaySearchResults(){
 
+  //Validate the search input
   if(isNaN($('#searchAsset').val().replace(/\./g, ''))){
     //alert('Invalid search string! Only numbers and dots are allowed!');
     $('#searchAsset').val('');
     return;
   }
+  //Empty the table contents in order to populare search results
   $('#dataTables-example > tbody').empty();
+  //Get all the asset info
   $.get("assetAPI", function(data, status){
     var byRating = data.slice(0);
 
@@ -139,6 +157,7 @@ function displaySearchResults(){
 
     $.each(byRating, function(index, element) {
       var myId = element.ip.replace(/\./g, '_');
+      //Populate the asset only if seatch criteria matches
       if(element.ip.indexOf($('#searchAsset').val()) >= 0){
         $('#dataTables-example > tbody:last-child').append("<tr>"
         + "<td >"+ '<input type="checkbox" style="float:right" id=select_for_bulk_update_'+element.ip+'>' + "</td>"
@@ -150,6 +169,7 @@ function displaySearchResults(){
 
         + "</tr>");
         //$('#'+myId).val(element.rating);
+        //Assign stars based on rating value
         jQuery('div.rateit, span.rateit').rateit();
         $('#'+myId).rateit('step', 1);
         $('#'+myId).rateit('value', element.rating);
