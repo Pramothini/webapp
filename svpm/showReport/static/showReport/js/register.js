@@ -1,3 +1,6 @@
+/**
+* used to send the csrf token along with ajax requests to prevent cross site request forgery
+*/
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie != '') {
@@ -14,6 +17,9 @@ function getCookie(name) {
     return cookieValue;
 }
 
+/**
+* performs this function when register.html loads
+*/
 $(document).ready(function() {
 	$("#register").on('click', function (event) {
 		registerUser();
@@ -21,6 +27,11 @@ $(document).ready(function() {
 
 });
 
+/**
+* checks whether the password meets the requirements
+* checks whther the password and confirm password are the same
+* makes a POST request to userAPI and creates a new user in the database
+*/
 function registerUser(){
   if (!(/^(?=.*[@#$&*^%!+=\/\\[\]|?.,<>)(;:'"~`])(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,}/.test($("#password").val()))) {
       $("#error").empty();$("#success").empty();
@@ -34,6 +45,9 @@ function registerUser(){
   }
 	else{
 	$.ajaxSetup({
+    /**
+    * sends the csrf token along with the request to prevent cross site request forgery
+    */
     beforeSend: function(xhr, settings) {
         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
             // Only send the token to relative URLs i.e. locally.
@@ -61,7 +75,7 @@ function registerUser(){
             $("#error").empty();$("#success").empty();
           	// $("#error").append(error.responseText.replace(/"|[|]|{|}|/gi, ''));
             $("#error").append("Error during Registeration");
-            console.log("error while registering user",error);
+            console.log("error while registering user");
           }
         });
 	}
