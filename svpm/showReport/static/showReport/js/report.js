@@ -16,6 +16,7 @@ $(document).ready(function() {
         $loading.hide();
     });
 
+    //Populate report table from database after calculating business risk
     createReportTable();
 
     $('th').click(function(){
@@ -39,8 +40,9 @@ $(document).ready(function() {
 
 function createReportTable(){
     
-    // Retrieve the object from storage
+    // Retrieve the object from storage for calculating business risk
     var retrievedObject = JSON.parse(localStorage.getItem('BRCalObj'));
+    //By default, table is sorted on business risk column
   $.get("reportAPI", function(data, status) {
     var byRisk = data.slice(0);
     byRisk.sort(function(a, b) {
@@ -48,6 +50,7 @@ function createReportTable(){
     });
 
 
+    //Dynamically update table rows
     $.each(byRisk, function(index, element) {
         //alert(byRisk.length);
         // for(var i=0; i<byRisk.length; i++) {
