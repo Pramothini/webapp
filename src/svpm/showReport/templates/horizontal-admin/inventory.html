@@ -55,7 +55,7 @@
                                             <option>4</option>
                                             <option>5</option>
                                         </select> </label>
-                                        <!-- Add search functionality to allow user to search for a specific IP or a subnet of IPs. -->
+                                        <!-- Add search functionality: Call displaySearchResults when search input is modified. Only numeric characters and dots accepted as inputs. Seach string could be present anywhere in the IP -->
                                         <label style="float:right">Search IP:
                                             <input  id="searchAsset" onchange="displaySearchResults()" type="text" maxlength="15" style="width: 120px;height:30px">
                                         </input> </label>
@@ -65,7 +65,7 @@
                                     </div>
                                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
-                                            <!-- For each row of the table, add a checkbox to allow user to select current row of asset. The checkbox in the header row serves as "Select All", by selecting which all assets of current table will be selected. -->
+                                            <!-- The checkbox in the header row serves as "Select All", by checking/unchecking which all assets of current table will be checked/unchecked. -->
                                             <tr>
                                                 <th>Select for bulk edit
                                                     <input type="checkbox" style="float:right" id='selectAllAssets'>
