@@ -3,6 +3,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.shortcuts import render
 
+# Serializer for user table
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -10,6 +11,10 @@ class UserSerializer(serializers.ModelSerializer):
         write_only_fields = ('password',)
         read_only_fields = ('id',)
 
+    """
+    ensures that a newly created user cannot login
+    ensures that the hash of the password is stored 
+    """
     def create(self, validated_data):
         user = User.objects.create(
             username=validated_data['username'],
@@ -23,12 +28,14 @@ class UserSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
+# Serializer for asset table
 class AssetSerializer(serializers.ModelSerializer):
     class Meta:
         model = AssetRating
         fields = ('ip', 'rating')
 
 
+# Serializer for report table
 class ReportSerializer(serializers.ModelSerializer):
     assetInfo = AssetSerializer()
     class Meta:
