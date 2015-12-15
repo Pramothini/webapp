@@ -111,7 +111,9 @@ error: function(error){
 
 }
 
-
+/**
+* used to send the csrf token along with ajax requests to prevent cross site request forgery
+*/
 function getCookie(name) {
   var cookieValue = null;
   if (document.cookie && document.cookie != '') {
