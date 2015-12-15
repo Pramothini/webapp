@@ -13,32 +13,31 @@ import csv_validator
 from django.contrib.auth.models import User
 import csv
 
-# Create your views here.
+#redirects user to registeration page
 def register(request):
     if request.method == 'GET':
         return render(request, 'register.html')
     serialized = UserSerializer
     return render(request, 'register.html')
 
-
-@login_required
+@login_required #redirects anonymous user to login page
 def charts(request):
     return render(request, 'bootstrap-responsive-admin-template/code/charts.html')
 
-@login_required
+@login_required #redirects anonymous user to login page
 def table(request):
     return render(request, 'horizontal-admin/table.html')
 
-@login_required
+@login_required #redirects anonymous user to login page
 def settings(request):
     return render(request, 'horizontal-admin/settings.html')
 
-@login_required
+@login_required #redirects anonymous user to login page
 def inventory(request):
     asset_data=AssetRating.objects.all()
     return render(request, 'horizontal-admin/inventory.html', {"asset_data":asset_data.values()})
     
-@login_required
+@login_required #redirects anonymous user to login page
 def csvInput(request):
     validationMessage = ""
     validateResult = 0
@@ -65,11 +64,17 @@ def csvInput(request):
 """
 API endpoints
 """
+"""
+Used to GET POST PUT or DELETE rows in report table using REST API
+"""
 class ReportViewSet(viewsets.ModelViewSet):
     queryset = ReportTable.objects.all()
     serializer_class = ReportSerializer
     permission_classes = (IsAdminOrReadOnly,)
 
+"""
+Used to GET POST PUT or DELETE rows in asset table using REST API
+"""
 class AssetViewSet(viewsets.ModelViewSet):
     lookup_field = 'ip'
     lookup_value_regex = '[0-9.]+'
@@ -78,6 +83,9 @@ class AssetViewSet(viewsets.ModelViewSet):
     serializer_class = AssetSerializer
     permission_classes = (IsAdminOrReadOnly,)
 
+"""
+Used to GET POST PUT or DELETE rows in user table using REST API
+"""
 class UserViewSet(viewsets.ModelViewSet):
     # permissin_classes = [
     #     permissions.AllowAny # Or anon users can't register
