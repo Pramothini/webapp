@@ -20,8 +20,8 @@ $(document).ready(function() {
   }
   //Get the slider preference values to update legends for the chart
   sevValue = JSON.parse(localStorage.getItem('BRCalObj'))['sevValue'];
-  $('#currAssetW').text('Asset Rating Component: ' + sevValue);
-  $('#currSevW').text('Severity Rating Component: ' + (10 - sevValue));
+  $('#currAssetW').text('Severity Rating Component: ' + sevValue);
+  $('#currSevW').text('Asset Rating Component: ' + (10 - sevValue));
 
   thresholdValue = [JSON.parse(localStorage.getItem('SevThresholds'))['low'], JSON.parse(localStorage.getItem('SevThresholds'))['high']];
   //Special cases
